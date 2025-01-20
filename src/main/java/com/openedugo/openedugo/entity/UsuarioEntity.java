@@ -18,6 +18,8 @@ import jakarta.persistence.Table;
  *
  * @author devfrikz
  */
+
+
 @Entity
 @Table(name="usuarios")
 public class UsuarioEntity {
@@ -33,13 +35,13 @@ public class UsuarioEntity {
     @Column(name= "password", nullable = false, length = 255)
     private String password;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id",nullable = false)
-    private Rol role;
+    //@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "role_id",nullable = false)
+    //private Rol role;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sucursal_id")
-    private Sucursal sucursal;
+    //@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "sucursal_id")
+    //private Sucursal sucursal;
     
     @Column(name="nombre", length = 100)
     private String nombre;
@@ -77,7 +79,7 @@ public class UsuarioEntity {
         this.password = password;
     }
 
-    public Rol getRole() {
+    /*public Rol getRole() {
         return role;
     }
 
@@ -91,7 +93,7 @@ public class UsuarioEntity {
 
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
-    }
+    }*/
 
     public String getNombre() {
         return nombre;
