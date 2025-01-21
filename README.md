@@ -7,7 +7,9 @@
 4. [Instalación](#instalación)
    - [Windows](#windows)
    - [Linux](#linux)
-5. [Recursos y documentación](#recursos-y-documentación)
+5. [swagger](#swagger)
+6. [Recursos y documentación](#recursos-y-documentación)
+
 
 ---
 
@@ -106,6 +108,12 @@ Antes de comenzar, asegúrate de tener instaladas las siguientes herramientas:
    - Para la base de datos, instala **MySQL Workbench** o **DBeaver**.
 
 ---
+5. **Swagger**
+   - Para acceder a la documentación de la API, puedes usar Swagger desde el siguiente enlace:
+     - http://localhost:8080/swagger-ui.html
+   - Para acceder a la documentación de la API, puedes usar Swagger desde el siguiente enlace:
+     - http://localhost:8080/swagger-ui.html
+
 
 ## Recursos y documentación
 
