@@ -1,4 +1,3 @@
-
 package com.openedugo.openedugo.entity;
 
 import jakarta.persistence.Column;
@@ -10,30 +9,25 @@ import jakarta.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name="facturas")
+@Table(name = "facturas")
 
 public class FacturaEntity {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "factura_id")
-  private double id;
-  //@columnn(name = "estudiante_id", nullable = false , unique = true, )
-   
-  @Column (name ="fecha_emision")
-  
-  private Date fechaEmision;
-  
-  @Column(name = "total")
-  
-  private Double total;
-  
-  // Como funcionan las relaciones One to Many / Many to one / one to one / Many to Many
-  
-  
-  //@Column("moneda_id")
-  //@Column("tipo_pago_id")
-  //@Column("estado")
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "factura_id")
+    private double id;
+    //@columnn(name = "estudiante_id", nullable = false , unique = true, )
+
+    @Column(name = "fecha_emision")
+
+    private Date fechaEmision;
+
+    @Column(name = "total")
+
+    private Double total;
+
+    
     public double getId() {
         return id;
     }
@@ -57,10 +51,5 @@ public class FacturaEntity {
     public void setTotal(Double total) {
         this.total = total;
     }
-  
-  
-  
-  
-  
-  
+
 }
