@@ -27,7 +27,7 @@ public class UsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usuario_id")
-    private Integer id;
+    private Integer usuario_id;
     
     @Column(name = "username",nullable = false, unique = true,length = 50)
     private String username;
@@ -55,12 +55,12 @@ public class UsuarioEntity {
     
     // Getter y Setters
     
-    public Integer getId() {
-        return id;
+     public Integer getUsuario_id() {
+        return usuario_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUsuario_id(Integer usuario_id) {
+        this.usuario_id = usuario_id;
     }
 
     public String getUsername() {
