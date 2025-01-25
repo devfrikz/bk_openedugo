@@ -53,7 +53,7 @@ public class UsuarioEntity {
     private String email;
 
     
-    // Getter y Setters
+    
     
     public Integer getId() {
         return id;
