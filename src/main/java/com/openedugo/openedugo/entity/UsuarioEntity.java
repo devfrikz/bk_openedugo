@@ -21,13 +21,13 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name="usuarios")
+@Table(name = "usuarios")
 public class UsuarioEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usuario_id")
-    private Integer id;
+    private Integer usuarioId;
     
     @Column(name = "username",nullable = false, unique = true,length = 50)
     private String username;
@@ -53,16 +53,24 @@ public class UsuarioEntity {
     private String email;
 
     
+
+    // Getter y Setters
+
     
     
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+
+    public Integer getUsuarioId() {
+        return usuarioId;
     }
 
+    public void setUsuarioId(Integer usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+    
     public String getUsername() {
         return username;
     }
