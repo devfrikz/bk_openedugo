@@ -25,13 +25,13 @@ public class AsistenciaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     @Column(name = "asistencia_id")
-    private Integer asistencia_id;
+    private Integer asistenciaId;
     
     @Column(name = "horario_id",nullable = false)
-    private Integer horario_id;
+    private Integer horarioId;
     
     @Column(name = "estudiante_id",nullable = false)
-    private Integer estudiante_id;
+    private Integer estudianteId;
     
     @Column(name = "fecha")
     private Date fecha;
@@ -47,29 +47,31 @@ public class AsistenciaEntity {
     //@JoinColumn(name = "estudiante_id")
     //private Estudiante estudiante;
 
-    public Integer getAsistencia_id() {
-        return asistencia_id;
+    public Integer getAsistenciaId() {
+        return asistenciaId;
     }
 
-    public void setAsistencia_id(Integer asistencia_id) {
-        this.asistencia_id = asistencia_id;
+    public void setAsistenciaId(Integer asistenciaId) {
+        this.asistenciaId = asistenciaId;
     }
 
-    public Integer getHorario_id() {
-        return horario_id;
+    public Integer getHorarioId() {
+        return horarioId;
     }
 
-    public void setHorario_id(Integer horario_id) {
-        this.horario_id = horario_id;
+    public void setHorarioId(Integer horarioId) {
+        this.horarioId = horarioId;
     }
 
-    public Integer getEstudiante_id() {
-        return estudiante_id;
+    public Integer getEstudianteId() {
+        return estudianteId;
     }
 
-    public void setEstudiante_id(Integer estudiante_id) {
-        this.estudiante_id = estudiante_id;
+    public void setEstudianteId(Integer estudianteId) {
+        this.estudianteId = estudianteId;
     }
+
+
 
     public Date getFecha() {
         return fecha;

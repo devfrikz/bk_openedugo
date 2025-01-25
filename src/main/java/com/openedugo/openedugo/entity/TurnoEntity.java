@@ -23,7 +23,7 @@ public class TurnoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "turno_id")
-    private Integer turno_id;
+    private Integer turnoId;
     
     @Column(name = "nombre",nullable = false, length = 55)
     private String nombre;
@@ -31,12 +31,12 @@ public class TurnoEntity {
     @Column(name= "descripcion",length = 255)
     private String descripcion;  
 
-    public Integer getTurno_id() {
-        return turno_id;
+    public Integer getTurnoId() {
+        return turnoId;
     }
 
-    public void setTurno_id(Integer turno_id) {
-        this.turno_id = turno_id;
+    public void setTurnoId(Integer turnoId) {
+        this.turnoId = turnoId;
     }
 
     public String getNombre() {

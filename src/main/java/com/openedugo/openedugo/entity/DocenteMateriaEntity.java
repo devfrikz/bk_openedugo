@@ -18,36 +18,33 @@ import jakarta.persistence.Table;
 @Entity
 @Table (name = "docente_materias")
 
-public class Docente_MateriaEntity {
+public class DocenteMateriaEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "docente_id", nullable = false)
-    private Integer docente_id;
+    private Integer docenteId;
     
      @Column(name = "materia_id", nullable = false)
-    private Integer materia_id;
+    private Integer materiaId;
      
-    /**Declarar llaves foraneas */ 
+      /** Declarar llaves foraneas **/ 
 
-    public Integer getDocente_id() {
-        return docente_id;
+    public Integer getDocenteId() {
+        return docenteId;
     }
 
-    public void setDocente_id(Integer docente_id) {
-        this.docente_id = docente_id;
+    public void setDocenteId(Integer docenteId) {
+        this.docenteId = docenteId;
     }
 
-    public Integer getMateria_id() {
-        return materia_id;
+    public Integer getMateriaId() {
+        return materiaId;
     }
 
-    public void setMateria_id(Integer materia_id) {
-        this.materia_id = materia_id;
+    public void setMateriaId(Integer materiaId) {
+        this.materiaId = materiaId;
     }
-     
-     
-     
-    
+         
     
 }

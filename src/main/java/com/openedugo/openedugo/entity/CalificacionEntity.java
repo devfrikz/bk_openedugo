@@ -11,7 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.sql.Date;
-import java.text.DecimalFormat;
+
 
 /**
  *
@@ -26,23 +26,22 @@ public class CalificacionEntity {
     @GeneratedValue (strategy = GenerationType.IDENTITY) 
     
     @Column(name = "calificacion_id")
-    private Integer calificacion_id;
+    private Integer calificacionId;
     
     @Column(name = "estudiante_id",nullable = false)
-    private Integer estudiante_id;
+    private Integer estudianteId;
      
     @Column(name = "materia_id",nullable = false)
-    private Integer materia_id;
+    private Integer materiaId;
     
     @Column(name = "docente_id",nullable = false)
-    private Integer docente_id;
+    private Integer docenteId;
 
     @Column(name="fecha")
     private Date fecha;
     
     @Column(name="nota")
-    private Double nota;
-    DecimalFormat df = new DecimalFormat("#.##");    
+    private Double nota;   
 
     @Column(name="comentario")
     private String comentario;  
@@ -63,36 +62,36 @@ public class CalificacionEntity {
     //@JoinColumn(name = "docente_id")
     //private Docente docente;
 
-    public Integer getCalificacion_id() {
-        return calificacion_id;
+    public Integer getCalificacionId() {
+        return calificacionId;
     }
 
-    public void setCalificacion_id(Integer calificacion_id) {
-        this.calificacion_id = calificacion_id;
+    public void setCalificacionId(Integer calificacionId) {
+        this.calificacionId = calificacionId;
     }
 
-    public Integer getEstudiante_id() {
-        return estudiante_id;
+    public Integer getEstudianteId() {
+        return estudianteId;
     }
 
-    public void setEstudiante_id(Integer estudiante_id) {
-        this.estudiante_id = estudiante_id;
+    public void setEstudianteId(Integer estudianteId) {
+        this.estudianteId = estudianteId;
     }
 
-    public Integer getMateria_id() {
-        return materia_id;
+    public Integer getMateriaId() {
+        return materiaId;
     }
 
-    public void setMateria_id(Integer materia_id) {
-        this.materia_id = materia_id;
+    public void setMateriaId(Integer materiaId) {
+        this.materiaId = materiaId;
     }
 
-    public Integer getDocente_id() {
-        return docente_id;
+    public Integer getDocenteId() {
+        return docenteId;
     }
 
-    public void setDocente_id(Integer docente_id) {
-        this.docente_id = docente_id;
+    public void setDocenteId(Integer docenteId) {
+        this.docenteId = docenteId;
     }
 
     public Date getFecha() {
@@ -111,14 +110,6 @@ public class CalificacionEntity {
         this.nota = nota;
     }
 
-    public DecimalFormat getDf() {
-        return df;
-    }
-
-    public void setDf(DecimalFormat df) {
-        this.df = df;
-    }
-
     public String getComentario() {
         return comentario;
     }
@@ -134,7 +125,7 @@ public class CalificacionEntity {
     public void setPeriodo(String periodo) {
         this.periodo = periodo;
     }
-    
-    
+
+
     
 }

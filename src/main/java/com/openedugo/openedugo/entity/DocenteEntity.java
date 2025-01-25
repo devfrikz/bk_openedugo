@@ -10,7 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
+import java.sql.Date;
 
 
 
@@ -27,10 +27,10 @@ public class DocenteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     @Column(name = "docente_id")
-    private Integer docente_id;
+    private Integer docenteId;
     
     @Column(name = "numero_profesor",nullable = false, unique = true,length = 50)
-    private String numero_profesor;
+    private String numeroProfesor;
 
     @Column(name="nombre", length = 100)
     private String nombre;
@@ -39,7 +39,7 @@ public class DocenteEntity {
     private String apellidos;    
 
     @Column(name= "fecha_nacimiento")
-    private LocalDate fecha_nacimiento;
+    private Date fechaNacimiento;
     
     @Column(name="nacionalidad",length = 50)
     private String nacionalidad;
@@ -48,7 +48,7 @@ public class DocenteEntity {
     private String departamento; 
     
     @Column(name="direccion_domicilio",length = 250)
-    private String direccion_domicilio; 
+    private String direccionDomicilio; 
     
     @Column(name="cedula",length = 50)
     private String cedula; 
@@ -63,29 +63,29 @@ public class DocenteEntity {
     private String correo;
     
     @Column(name ="guia_aula",length = 100)
-    private Boolean guia_aula;
+    private Boolean guiaAula;
     
     @Column(name ="sucursal_id")
-    private Integer sucursal_id;
+    private Integer sucursalId;
     
     //@ManyToOne(fetch = FetchType.LAZY)
     //@JoinColumn(name = "sucursal_id")
     //private Sucursal sucursal;
-    
-    public Integer getDocente_id() {
-        return docente_id;
+
+    public Integer getDocenteId() {
+        return docenteId;
     }
 
-    public void setDocente_id(Integer docente_id) {
-        this.docente_id = docente_id;
+    public void setDocenteId(Integer docenteId) {
+        this.docenteId = docenteId;
     }
 
-    public String getNumero_profesor() {
-        return numero_profesor;
+    public String getNumeroProfesor() {
+        return numeroProfesor;
     }
 
-    public void setNumero_profesor(String numero_profesor) {
-        this.numero_profesor = numero_profesor;
+    public void setNumeroProfesor(String numeroProfesor) {
+        this.numeroProfesor = numeroProfesor;
     }
 
     public String getNombre() {
@@ -104,12 +104,12 @@ public class DocenteEntity {
         this.apellidos = apellidos;
     }
 
-    public LocalDate getFecha_nacimiento() {
-        return fecha_nacimiento;
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getNacionalidad() {
@@ -128,12 +128,12 @@ public class DocenteEntity {
         this.departamento = departamento;
     }
 
-    public String getDireccion_domicilio() {
-        return direccion_domicilio;
+    public String getDireccionDomicilio() {
+        return direccionDomicilio;
     }
 
-    public void setDireccion_domicilio(String direccion_domicilio) {
-        this.direccion_domicilio = direccion_domicilio;
+    public void setDireccionDomicilio(String direccionDomicilio) {
+        this.direccionDomicilio = direccionDomicilio;
     }
 
     public String getCedula() {
@@ -168,22 +168,23 @@ public class DocenteEntity {
         this.correo = correo;
     }
 
-    public Boolean getGuia_aula() {
-        return guia_aula;
+    public Boolean getGuiaAula() {
+        return guiaAula;
     }
 
-    public void setGuia_aula(Boolean guia_aula) {
-        this.guia_aula = guia_aula;
+    public void setGuiaAula(Boolean guiaAula) {
+        this.guiaAula = guiaAula;
     }
 
-    public Integer getSucursal_id() {
-        return sucursal_id;
+    public Integer getSucursalId() {
+        return sucursalId;
     }
 
-    public void setSucursal_id(Integer sucursal_id) {
-        this.sucursal_id = sucursal_id;
+    public void setSucursalId(Integer sucursalId) {
+        this.sucursalId = sucursalId;
     }
     
+
 
     
 }

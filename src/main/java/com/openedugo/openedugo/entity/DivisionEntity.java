@@ -23,10 +23,10 @@ public class DivisionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "division_id")
-    private Integer division_id;
+    private Integer divisionId;
            
     @Column(name = "grado_id",nullable = false)
-    private Integer grado_id;
+    private Integer gradoId;
     
     @Column(name = "nombre",nullable = false, length = 10)
     private String nombre;
@@ -35,20 +35,20 @@ public class DivisionEntity {
     //@JoinColumn(name = "grado_id")
     //private Grado grado;
 
-    public Integer getDivision_id() {
-        return division_id;
+    public Integer getDivisionId() {
+        return divisionId;
     }
 
-    public void setDivision_id(Integer division_id) {
-        this.division_id = division_id;
+    public void setDivisionId(Integer divisionId) {
+        this.divisionId = divisionId;
     }
 
-    public Integer getGrado_id() {
-        return grado_id;
+    public Integer getGradoId() {
+        return gradoId;
     }
 
-    public void setGrado_id(Integer grado_id) {
-        this.grado_id = grado_id;
+    public void setGradoId(Integer gradoId) {
+        this.gradoId = gradoId;
     }
 
     public String getNombre() {

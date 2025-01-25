@@ -26,31 +26,31 @@ public class HorarioEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     @Column(name = "horario_id")
-    private Integer horario_id;
+    private Integer horarioId;
     
     @Column(name = "docente_id",nullable = false)
-    private Integer docente_id;
+    private Integer docenteId;
     
     @Column(name = "materia_id",nullable = false)
-    private Integer materia_id;
+    private Integer materiaId;
     
     @Column(name = "aula_id",nullable = false)
-    private Integer aula_id;
+    private Integer aulaId;
     
     @Column(name = "turno_id",nullable = false)
-    private Integer turno_id;
+    private Integer turnoId;
 
     @Column(name="dia_semana", length = 15)
-    private String dia_semana;
+    private String diaSemana;
     
     @Column(name="hora_inicio")
-    private Time hora_inicio;    
+    private Time horaInicio;    
 
     @Column(name="hora_fin")
-    private Time hora_fin;  
+    private Time horaFin;  
         
     @Column(name ="division_id")
-    private Integer division_id;
+    private Integer divisionId;
     
     //**llave foraneas**//
     
@@ -74,76 +74,78 @@ public class HorarioEntity {
     //@JoinColumn(name = "division_id")
     //private Division division;
 
-    public Integer getHorario_id() {
-        return horario_id;
+    public Integer getHorarioId() {
+        return horarioId;
     }
 
-    public void setHorario_id(Integer horario_id) {
-        this.horario_id = horario_id;
+    public void setHorarioId(Integer horarioId) {
+        this.horarioId = horarioId;
     }
 
-    public Integer getDocente_id() {
-        return docente_id;
+    public Integer getDocenteId() {
+        return docenteId;
     }
 
-    public void setDocente_id(Integer docente_id) {
-        this.docente_id = docente_id;
+    public void setDocenteId(Integer docenteId) {
+        this.docenteId = docenteId;
     }
 
-    public Integer getMateria_id() {
-        return materia_id;
+    public Integer getMateriaId() {
+        return materiaId;
     }
 
-    public void setMateria_id(Integer materia_id) {
-        this.materia_id = materia_id;
+    public void setMateriaId(Integer materiaId) {
+        this.materiaId = materiaId;
     }
 
-    public Integer getAula_id() {
-        return aula_id;
+    public Integer getAulaId() {
+        return aulaId;
     }
 
-    public void setAula_id(Integer aula_id) {
-        this.aula_id = aula_id;
+    public void setAulaId(Integer aulaId) {
+        this.aulaId = aulaId;
     }
 
-    public Integer getTurno_id() {
-        return turno_id;
+    public Integer getTurnoId() {
+        return turnoId;
     }
 
-    public void setTurno_id(Integer turno_id) {
-        this.turno_id = turno_id;
+    public void setTurnoId(Integer turnoId) {
+        this.turnoId = turnoId;
     }
 
-    public String getDia_semana() {
-        return dia_semana;
+    public String getDiaSemana() {
+        return diaSemana;
     }
 
-    public void setDia_semana(String dia_semana) {
-        this.dia_semana = dia_semana;
+    public void setDiaSemana(String diaSemana) {
+        this.diaSemana = diaSemana;
     }
 
-    public Time getHora_inicio() {
-        return hora_inicio;
+    public Time getHoraInicio() {
+        return horaInicio;
     }
 
-    public void setHora_inicio(Time hora_inicio) {
-        this.hora_inicio = hora_inicio;
+    public void setHoraInicio(Time horaInicio) {
+        this.horaInicio = horaInicio;
     }
 
-    public Time getHora_fin() {
-        return hora_fin;
+    public Time getHoraFin() {
+        return horaFin;
     }
 
-    public void setHora_fin(Time hora_fin) {
-        this.hora_fin = hora_fin;
+    public void setHoraFin(Time horaFin) {
+        this.horaFin = horaFin;
     }
 
-    public Integer getDivision_id() {
-        return division_id;
+    public Integer getDivisionId() {
+        return divisionId;
     }
 
-    public void setDivision_id(Integer division_id) {
-        this.division_id = division_id;
+    public void setDivisionId(Integer divisionId) {
+        this.divisionId = divisionId;
     }
+
+
     
 }

@@ -23,7 +23,7 @@ public class GradoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "grado_id")
-    private Integer grado_id;
+    private Integer gradoId;
     
     @Column(name = "nombre",nullable = false, length = 55)
     private String nombre;
@@ -31,12 +31,12 @@ public class GradoEntity {
     @Column(name= "descripcion",length = 255)
     private String descripcion;    
 
-    public Integer getGrado_id() {
-        return grado_id;
+    public Integer getGradoId() {
+        return gradoId;
     }
 
-    public void setGrado_id(Integer grado_id) {
-        this.grado_id = grado_id;
+    public void setGradoId(Integer gradoId) {
+        this.gradoId = gradoId;
     }
 
     public String getNombre() {
