@@ -63,4 +63,165 @@ public class EstudianteEntity {
     
     @Column(name = "sucursal_id", nullable = true)
     private Integer sucursalId;
+
+    public EstudianteEntity() {
+    }
+
+    public EstudianteEntity(Integer estudianteId, Integer numeroAlumno, String nombre, String apellido, Date fechaNacimiento, String lugarNacimiento, String nacionalidad, String departamento, String direccionDomicilio, String distrito, String barrio, String centroProcedencia, char repitente, String padecimiento, char diagnosticado, Integer estadoId, Integer sucursalId) {
+        this.estudianteId = estudianteId;
+        this.numeroAlumno = numeroAlumno;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+        this.lugarNacimiento = lugarNacimiento;
+        this.nacionalidad = nacionalidad;
+        this.departamento = departamento;
+        this.direccionDomicilio = direccionDomicilio;
+        this.distrito = distrito;
+        this.barrio = barrio;
+        this.centroProcedencia = centroProcedencia;
+        this.repitente = repitente;
+        this.padecimiento = padecimiento;
+        this.diagnosticado = diagnosticado;
+        this.estadoId = estadoId;
+        this.sucursalId = sucursalId;
+    }
+
+    public Integer getEstudianteId() {
+        return estudianteId;
+    }
+
+    public void setEstudianteId(Integer estudianteId) {
+        this.estudianteId = estudianteId;
+    }
+
+    public Integer getNumeroAlumno() {
+        return numeroAlumno;
+    }
+
+    public void setNumeroAlumno(Integer numeroAlumno) {
+        this.numeroAlumno = numeroAlumno;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getLugarNacimiento() {
+        return lugarNacimiento;
+    }
+
+    public void setLugarNacimiento(String lugarNacimiento) {
+        this.lugarNacimiento = lugarNacimiento;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    public String getDireccionDomicilio() {
+        return direccionDomicilio;
+    }
+
+    public void setDireccionDomicilio(String direccionDomicilio) {
+        this.direccionDomicilio = direccionDomicilio;
+    }
+
+    public String getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(String distrito) {
+        this.distrito = distrito;
+    }
+
+    public String getBarrio() {
+        return barrio;
+    }
+
+    public void setBarrio(String barrio) {
+        this.barrio = barrio;
+    }
+
+    public String getCentroProcedencia() {
+        return centroProcedencia;
+    }
+
+    public void setCentroProcedencia(String centroProcedencia) {
+        this.centroProcedencia = centroProcedencia;
+    }
+
+    public char getRepitente() {
+        return repitente;
+    }
+
+    public void setRepitente(char repitente) {
+        this.repitente = repitente;
+    }
+
+    public String getPadecimiento() {
+        return padecimiento;
+    }
+
+    public void setPadecimiento(String padecimiento) {
+        this.padecimiento = padecimiento;
+    }
+
+    public char getDiagnosticado() {
+        return diagnosticado;
+    }
+
+    public void setDiagnosticado(char diagnosticado) {
+        this.diagnosticado = diagnosticado;
+    }
+
+    public Integer getEstadoId() {
+        return estadoId;
+    }
+
+    public void setEstadoId(Integer estadoId) {
+        this.estadoId = estadoId;
+    }
+
+    public Integer getSucursalId() {
+        return sucursalId;
+    }
+
+    public void setSucursalId(Integer sucursalId) {
+        this.sucursalId = sucursalId;
+    }
+    
+    
 }
