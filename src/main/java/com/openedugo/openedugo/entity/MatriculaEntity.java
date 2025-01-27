@@ -15,7 +15,7 @@ import java.time.Year;
 
 public class MatriculaEntity {
     
-  @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  
     @Column(name="matricula_id")
     private Integer id;

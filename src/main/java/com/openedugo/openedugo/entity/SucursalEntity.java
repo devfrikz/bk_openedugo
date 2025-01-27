@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="sucursales")
 
-public class SucursalesEntity {
+public class SucursalEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +26,10 @@ public class SucursalesEntity {
     @Column(name = "telefono", nullable = true, length = 25)
     private String telefono;
 
-    public SucursalesEntity() {
+    public SucursalEntity() {
     }
 
-    public SucursalesEntity(Integer sucursalId, String nombre, String direccion, String telefono) {
+    public SucursalEntity(Integer sucursalId, String nombre, String direccion, String telefono) {
         this.sucursalId = sucursalId;
         this.nombre = nombre;
         this.direccion = direccion;
