@@ -65,6 +65,11 @@ public class AulaEntity {
     public void setSucursalId(Integer sucursalId) {
         this.sucursalId = sucursalId;
     }
+
+    @Override
+    public String toString() {
+        return "AulaEntity{" + "aulaId=" + aulaId + ", nombre=" + nombre + ", capacidad=" + capacidad + ", sucursalId=" + sucursalId + '}';
+    }
     
     
 }

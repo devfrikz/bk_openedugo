@@ -66,6 +66,11 @@ public class MetodoPagoEntity {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    @Override
+    public String toString() {
+        return "MetodoPagoEntity{" + "metodoPagoId=" + metodoPagoId + ", codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + '}';
+    }
     
     
 }

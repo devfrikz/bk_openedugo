@@ -222,6 +222,11 @@ public class EstudianteEntity {
     public void setSucursalId(Integer sucursalId) {
         this.sucursalId = sucursalId;
     }
+
+    @Override
+    public String toString() {
+        return "EstudianteEntity{" + "estudianteId=" + estudianteId + ", numeroAlumno=" + numeroAlumno + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", lugarNacimiento=" + lugarNacimiento + ", nacionalidad=" + nacionalidad + ", departamento=" + departamento + ", direccionDomicilio=" + direccionDomicilio + ", distrito=" + distrito + ", barrio=" + barrio + ", centroProcedencia=" + centroProcedencia + ", repitente=" + repitente + ", padecimiento=" + padecimiento + ", diagnosticado=" + diagnosticado + ", estadoId=" + estadoId + ", sucursalId=" + sucursalId + '}';
+    }
     
     
 }

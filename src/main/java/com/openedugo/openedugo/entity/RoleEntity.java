@@ -56,5 +56,10 @@ public class RoleEntity {
         this.descripcion = descripcion;
     }
 
+    @Override
+    public String toString() {
+        return "RoleEntity{" + "roleId=" + roleId + ", nombre=" + nombre + ", descripcion=" + descripcion + '}';
+    }
+
     
 }

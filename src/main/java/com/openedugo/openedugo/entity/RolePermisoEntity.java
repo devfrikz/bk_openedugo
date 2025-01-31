@@ -42,6 +42,11 @@ public class RolePermisoEntity {
     public void setPermisoId(Integer permisoId) {
         this.permisoId = permisoId;
     }
+
+    @Override
+    public String toString() {
+        return "RolePermisoEntity{" + "roleId=" + roleId + ", permisoId=" + permisoId + '}';
+    }
     
     
 }

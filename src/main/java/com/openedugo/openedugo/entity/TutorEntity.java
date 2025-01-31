@@ -130,6 +130,11 @@ public class TutorEntity {
     public void setIngreso_estimado(BigDecimal ingreso_estimado) {
         this.ingreso_estimado = ingreso_estimado;
     }
+
+    @Override
+    public String toString() {
+        return "TutorEntity{" + "tutorId=" + tutorId + ", estudianteId=" + estudianteId + ", tipo=" + tipo + ", nombre=" + nombre + ", celular=" + celular + ", centro_trabajo=" + centro_trabajo + ", trabajo_celular=" + trabajo_celular + ", profesion=" + profesion + ", ingreso_estimado=" + ingreso_estimado + '}';
+    }
     
     
 }
