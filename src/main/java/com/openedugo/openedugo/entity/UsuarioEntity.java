@@ -58,9 +58,6 @@ public class UsuarioEntity {
 
     
     
-    public Integer getId() {
-        return id;
-    }
 
 
     public Integer getUsuarioId() {
