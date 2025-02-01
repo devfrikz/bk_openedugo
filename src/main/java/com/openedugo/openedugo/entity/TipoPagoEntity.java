@@ -26,6 +26,10 @@ public class TipoPagoEntity {
     @Column(name="descripcion")
     private String descripcion;
     
+    // no Keys
+    
+    
+    
     // Getter y Setters
 
     public Integer getId() {

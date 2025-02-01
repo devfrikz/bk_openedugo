@@ -27,7 +27,9 @@ public class MateriaEntity {
      @Column(name = "descripcion")
      private String descripcion;   
      
-     // descripcion TEXT(size) Holds a String with a maximun length of 65,535 bytes
+     // Keys
+     
+     
      
      
      // Getter y Setters
