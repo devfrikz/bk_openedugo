@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.util.Objects;
 
 /**
  *
@@ -40,8 +41,21 @@ public class DivisionEntity {
     @JoinColumn(name = "grado_id")
     private GradoEntity grado;
     
-    //Declaracion de Getter y setter
+    //Constructor Vacio
+   
+    public DivisionEntity() {
+    }
+    
+    //Constructor Con Parametros
 
+    public DivisionEntity(Integer divisionId, Integer gradoId, String nombre, GradoEntity grado) {
+        this.divisionId = divisionId;
+        this.gradoId = gradoId;
+        this.nombre = nombre;
+        this.grado = grado;
+    }
+
+    //Declaracion de Getter y setter
     public Integer getDivisionId() {
         return divisionId;
     }
@@ -66,6 +80,46 @@ public class DivisionEntity {
         this.nombre = nombre;
     }
     
+    //Metodo ToString
+
+    @Override
+    public String toString() {
+        return "DivisionEntity{" + "divisionId=" + divisionId + ", gradoId=" + gradoId + ", nombre=" + nombre + ", grado=" + grado + '}';
+    }
     
- 
+    //Metodos Equals y hashcode
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 41 * hash + Objects.hashCode(this.divisionId);
+        hash = 41 * hash + Objects.hashCode(this.gradoId);
+        hash = 41 * hash + Objects.hashCode(this.nombre);
+        hash = 41 * hash + Objects.hashCode(this.grado);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DivisionEntity other = (DivisionEntity) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.divisionId, other.divisionId)) {
+            return false;
+        }
+        if (!Objects.equals(this.gradoId, other.gradoId)) {
+            return false;
+        }
+        return Objects.equals(this.grado, other.grado);
+    }    
+    
 }

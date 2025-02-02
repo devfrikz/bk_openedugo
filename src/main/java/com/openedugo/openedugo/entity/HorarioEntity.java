@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.sql.Time;
+import java.util.Objects;
 
 
 /**
@@ -77,8 +78,31 @@ public class HorarioEntity {
     @JoinColumn(name = "division_id")
     private DivisionEntity division;
     
-    //** Declaracion de getter y setter **//
+    //Constructor Vacio
+    
+    public HorarioEntity() {
+    }
 
+    //Constructor Con Parametros
+
+    public HorarioEntity(Integer horarioId, Integer docenteId, Integer materiaId, Integer aulaId, Integer turnoId, String diaSemana, Time horaInicio, Time horaFin, Integer divisionId, DocenteEntity docente, MateriaEntity materia, AulaEntity aula, TurnoEntity turno, DivisionEntity division) {
+        this.horarioId = horarioId;
+        this.docenteId = docenteId;
+        this.materiaId = materiaId;
+        this.aulaId = aulaId;
+        this.turnoId = turnoId;
+        this.diaSemana = diaSemana;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.divisionId = divisionId;
+        this.docente = docente;
+        this.materia = materia;
+        this.aula = aula;
+        this.turno = turno;
+        this.division = division;
+    }
+    
+    //** Declaracion de getter y setter **//
     public Integer getHorarioId() {
         return horarioId;
     }
@@ -151,6 +175,89 @@ public class HorarioEntity {
         this.divisionId = divisionId;
     }
 
+    //Metodo ToString
 
+    @Override
+    public String toString() {
+        return "HorarioEntity{" + "horarioId=" + horarioId + ", docenteId=" + docenteId + ", materiaId=" + materiaId + ", aulaId=" + aulaId + ", turnoId=" + turnoId + ", diaSemana=" + diaSemana + ", horaInicio=" + horaInicio + ", horaFin=" + horaFin + ", divisionId=" + divisionId + ", docente=" + docente + ", materia=" + materia + ", aula=" + aula + ", turno=" + turno + ", division=" + division + '}';
+    }
+    
+    //Metodos Equals y hashcode
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 23 * hash + Objects.hashCode(this.horarioId);
+        hash = 23 * hash + Objects.hashCode(this.docenteId);
+        hash = 23 * hash + Objects.hashCode(this.materiaId);
+        hash = 23 * hash + Objects.hashCode(this.aulaId);
+        hash = 23 * hash + Objects.hashCode(this.turnoId);
+        hash = 23 * hash + Objects.hashCode(this.diaSemana);
+        hash = 23 * hash + Objects.hashCode(this.horaInicio);
+        hash = 23 * hash + Objects.hashCode(this.horaFin);
+        hash = 23 * hash + Objects.hashCode(this.divisionId);
+        hash = 23 * hash + Objects.hashCode(this.docente);
+        hash = 23 * hash + Objects.hashCode(this.materia);
+        hash = 23 * hash + Objects.hashCode(this.aula);
+        hash = 23 * hash + Objects.hashCode(this.turno);
+        hash = 23 * hash + Objects.hashCode(this.division);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final HorarioEntity other = (HorarioEntity) obj;
+        if (!Objects.equals(this.diaSemana, other.diaSemana)) {
+            return false;
+        }
+        if (!Objects.equals(this.horarioId, other.horarioId)) {
+            return false;
+        }
+        if (!Objects.equals(this.docenteId, other.docenteId)) {
+            return false;
+        }
+        if (!Objects.equals(this.materiaId, other.materiaId)) {
+            return false;
+        }
+        if (!Objects.equals(this.aulaId, other.aulaId)) {
+            return false;
+        }
+        if (!Objects.equals(this.turnoId, other.turnoId)) {
+            return false;
+        }
+        if (!Objects.equals(this.horaInicio, other.horaInicio)) {
+            return false;
+        }
+        if (!Objects.equals(this.horaFin, other.horaFin)) {
+            return false;
+        }
+        if (!Objects.equals(this.divisionId, other.divisionId)) {
+            return false;
+        }
+        if (!Objects.equals(this.docente, other.docente)) {
+            return false;
+        }
+        if (!Objects.equals(this.materia, other.materia)) {
+            return false;
+        }
+        if (!Objects.equals(this.aula, other.aula)) {
+            return false;
+        }
+        if (!Objects.equals(this.turno, other.turno)) {
+            return false;
+        }
+        return Objects.equals(this.division, other.division);
+    }
+    
+    
     
 }

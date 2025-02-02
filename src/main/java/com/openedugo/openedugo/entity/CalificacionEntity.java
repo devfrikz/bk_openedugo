@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.sql.Date;
+import java.util.Objects;
 
 
 /**
@@ -66,8 +67,29 @@ public class CalificacionEntity {
     @JoinColumn(name = "docente_id")
     private DocenteEntity docente;
     
-    /** Declaracion de getter y setter **/
+    //Constructor Vacio
+    
+    public CalificacionEntity() {
+    }
 
+    //Constructor con Parametros
+    
+    public CalificacionEntity(Integer calificacionId, Integer estudianteId, Integer materiaId, Integer docenteId, Date fecha, Double nota, String comentario, String periodo, EstudianteEntity estudiante, MateriaEntity materia, DocenteEntity docente) {
+        this.calificacionId = calificacionId;
+        this.estudianteId = estudianteId;
+        this.materiaId = materiaId;
+        this.docenteId = docenteId;
+        this.fecha = fecha;
+        this.nota = nota;
+        this.comentario = comentario;
+        this.periodo = periodo;
+        this.estudiante = estudiante;
+        this.materia = materia;
+        this.docente = docente;
+    }
+
+    /** Declaracion de getter y setter **/
+    
     public Integer getCalificacionId() {
         return calificacionId;
     }
@@ -132,6 +154,76 @@ public class CalificacionEntity {
         this.periodo = periodo;
     }
 
+    //Metodo ToString
 
+    @Override
+    public String toString() {
+        return "CalificacionEntity{" + "calificacionId=" + calificacionId + ", estudianteId=" + estudianteId + ", materiaId=" + materiaId + ", docenteId=" + docenteId + ", fecha=" + fecha + ", nota=" + nota + ", comentario=" + comentario + ", periodo=" + periodo + ", estudiante=" + estudiante + ", materia=" + materia + ", docente=" + docente + '}';
+    }
+    
+    //Metodos Equals y hashcode
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.calificacionId);
+        hash = 47 * hash + Objects.hashCode(this.estudianteId);
+        hash = 47 * hash + Objects.hashCode(this.materiaId);
+        hash = 47 * hash + Objects.hashCode(this.docenteId);
+        hash = 47 * hash + Objects.hashCode(this.fecha);
+        hash = 47 * hash + Objects.hashCode(this.nota);
+        hash = 47 * hash + Objects.hashCode(this.comentario);
+        hash = 47 * hash + Objects.hashCode(this.periodo);
+        hash = 47 * hash + Objects.hashCode(this.estudiante);
+        hash = 47 * hash + Objects.hashCode(this.materia);
+        hash = 47 * hash + Objects.hashCode(this.docente);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CalificacionEntity other = (CalificacionEntity) obj;
+        if (!Objects.equals(this.comentario, other.comentario)) {
+            return false;
+        }
+        if (!Objects.equals(this.periodo, other.periodo)) {
+            return false;
+        }
+        if (!Objects.equals(this.calificacionId, other.calificacionId)) {
+            return false;
+        }
+        if (!Objects.equals(this.estudianteId, other.estudianteId)) {
+            return false;
+        }
+        if (!Objects.equals(this.materiaId, other.materiaId)) {
+            return false;
+        }
+        if (!Objects.equals(this.docenteId, other.docenteId)) {
+            return false;
+        }
+        if (!Objects.equals(this.fecha, other.fecha)) {
+            return false;
+        }
+        if (!Objects.equals(this.nota, other.nota)) {
+            return false;
+        }
+        if (!Objects.equals(this.estudiante, other.estudiante)) {
+            return false;
+        }
+        if (!Objects.equals(this.materia, other.materia)) {
+            return false;
+        }
+        return Objects.equals(this.docente, other.docente);
+    }
+    
     
 }
