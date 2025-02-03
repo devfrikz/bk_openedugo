@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.sql.Date;
+import java.util.Objects;
 
 
 /**
@@ -52,8 +53,25 @@ public class AsistenciaEntity {
     @JoinColumn(name = "estudiante_id")
     private EstudianteEntity estudiante;
     
-    // Declaracion de getter y setter
+    //Constructor Vacio
+    
+    public AsistenciaEntity() {
+    }
 
+    //Constructor Con Parametros
+    
+    public AsistenciaEntity(Integer asistenciaId, Integer horarioId, Integer estudianteId, Date fecha, Boolean presente, HorarioEntity horario, EstudianteEntity estudiante) {
+        this.asistenciaId = asistenciaId;
+        this.horarioId = horarioId;
+        this.estudianteId = estudianteId;
+        this.fecha = fecha;
+        this.presente = presente;
+        this.horario = horario;
+        this.estudiante = estudiante;
+    }
+
+    // Declaracion de getter y setter
+    
     public Integer getAsistenciaId() {
         return asistenciaId;
     }
@@ -78,8 +96,6 @@ public class AsistenciaEntity {
         this.estudianteId = estudianteId;
     }
 
-
-
     public Date getFecha() {
         return fecha;
     }
@@ -95,5 +111,61 @@ public class AsistenciaEntity {
     public void setPresente(Boolean presente) {
         this.presente = presente;
     }
+    
+    //Metodo ToString
+
+    @Override
+    public String toString() {
+        return "AsistenciaEntity{" + "asistenciaId=" + asistenciaId + ", horarioId=" + horarioId + ", estudianteId=" + estudianteId + ", fecha=" + fecha + ", presente=" + presente + ", horario=" + horario + ", estudiante=" + estudiante + '}';
+    }
+    
+    //Metodos Equals y hashcode
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.asistenciaId);
+        hash = 23 * hash + Objects.hashCode(this.horarioId);
+        hash = 23 * hash + Objects.hashCode(this.estudianteId);
+        hash = 23 * hash + Objects.hashCode(this.fecha);
+        hash = 23 * hash + Objects.hashCode(this.presente);
+        hash = 23 * hash + Objects.hashCode(this.horario);
+        hash = 23 * hash + Objects.hashCode(this.estudiante);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AsistenciaEntity other = (AsistenciaEntity) obj;
+        if (!Objects.equals(this.asistenciaId, other.asistenciaId)) {
+            return false;
+        }
+        if (!Objects.equals(this.horarioId, other.horarioId)) {
+            return false;
+        }
+        if (!Objects.equals(this.estudianteId, other.estudianteId)) {
+            return false;
+        }
+        if (!Objects.equals(this.fecha, other.fecha)) {
+            return false;
+        }
+        if (!Objects.equals(this.presente, other.presente)) {
+            return false;
+        }
+        if (!Objects.equals(this.horario, other.horario)) {
+            return false;
+        }
+        return Objects.equals(this.estudiante, other.estudiante);
+    }
+    
     
 }

@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.util.Objects;
 
 /**
  *
@@ -42,7 +43,21 @@ public class DocenteTurnoEntity {
     @JoinColumn(name = "docente_id")
     private DocenteEntity docente;
 
- /** Declaracion de getter y setter **/
+    //constructor Vacio
+    
+    public DocenteTurnoEntity() {
+    }
+    
+    //Constructor con Parametros
+
+    public DocenteTurnoEntity(Integer docenteId, Integer turnoId, TurnoEntity turno, DocenteEntity docente) {
+        this.docenteId = docenteId;
+        this.turnoId = turnoId;
+        this.turno = turno;
+        this.docente = docente;
+    }
+       
+    /** Declaracion de getter y setter **/
     
     public Integer getDocenteId() {
         return docenteId;
@@ -60,5 +75,47 @@ public class DocenteTurnoEntity {
         this.turnoId = turnoId;
     }
      
- 
+    //Metodo ToString
+
+    @Override
+    public String toString() {
+        return "DocenteTurnoEntity{" + "docenteId=" + docenteId + ", turnoId=" + turnoId + ", turno=" + turno + ", docente=" + docente + '}';
+    }
+    
+    //Metodos Equals y hashcode
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.docenteId);
+        hash = 29 * hash + Objects.hashCode(this.turnoId);
+        hash = 29 * hash + Objects.hashCode(this.turno);
+        hash = 29 * hash + Objects.hashCode(this.docente);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DocenteTurnoEntity other = (DocenteTurnoEntity) obj;
+        if (!Objects.equals(this.docenteId, other.docenteId)) {
+            return false;
+        }
+        if (!Objects.equals(this.turnoId, other.turnoId)) {
+            return false;
+        }
+        if (!Objects.equals(this.turno, other.turno)) {
+            return false;
+        }
+        return Objects.equals(this.docente, other.docente);
+    }
+    
 }

@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.util.Objects;
 
 /**
  *
@@ -31,6 +32,18 @@ public class TurnoEntity {
     @Column(name= "descripcion",length = 255)
     private String descripcion;  
 
+    //constructor Vacio
+    public TurnoEntity() {    
+    }
+
+    //Constructor con Parametros
+    public TurnoEntity(Integer turnoId, String nombre, String descripcion) {    
+        this.turnoId = turnoId;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+
+    //getter y setter
     public Integer getTurnoId() {
         return turnoId;
     }
@@ -55,4 +68,44 @@ public class TurnoEntity {
         this.descripcion = descripcion;
     }
     
+    //Metodo ToString
+
+    @Override
+    public String toString() {
+        return "TurnoEntity{" + "turnoId=" + turnoId + ", nombre=" + nombre + ", descripcion=" + descripcion + '}';
+    }
+    
+    //Metodos Equals y hashcode
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.turnoId);
+        hash = 59 * hash + Objects.hashCode(this.nombre);
+        hash = 59 * hash + Objects.hashCode(this.descripcion);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TurnoEntity other = (TurnoEntity) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripcion, other.descripcion)) {
+            return false;
+        }
+        return Objects.equals(this.turnoId, other.turnoId);
+    }
+    
+        
 }

@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.sql.Date;
+import java.util.Objects;
 
 
 
@@ -74,7 +75,32 @@ public class DocenteEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sucursal_id")
     private SucursalEntity sucursal;
+    
+    //constructor Vacio
+    
+    public DocenteEntity() {
+    }
 
+    //Constructor con Parametros
+    public DocenteEntity(Integer docenteId, String numeroProfesor, String nombre, String apellidos, Date fechaNacimiento, String nacionalidad, String departamento, String direccionDomicilio, String cedula, String telefono, String celular, String correo, Boolean guiaAula, Integer sucursalId, SucursalEntity sucursal) {    
+        this.docenteId = docenteId;
+        this.numeroProfesor = numeroProfesor;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.fechaNacimiento = fechaNacimiento;
+        this.nacionalidad = nacionalidad;
+        this.departamento = departamento;
+        this.direccionDomicilio = direccionDomicilio;
+        this.cedula = cedula;
+        this.telefono = telefono;
+        this.celular = celular;
+        this.correo = correo;
+        this.guiaAula = guiaAula;
+        this.sucursalId = sucursalId;
+        this.sucursal = sucursal;
+    }
+
+    //getter y setter
     public Integer getDocenteId() {
         return docenteId;
     }
@@ -187,7 +213,93 @@ public class DocenteEntity {
         this.sucursalId = sucursalId;
     }
     
+    //Metodo ToString
 
+    @Override
+    public String toString() {
+        return "DocenteEntity{" + "docenteId=" + docenteId + ", numeroProfesor=" + numeroProfesor + ", nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + ", nacionalidad=" + nacionalidad + ", departamento=" + departamento + ", direccionDomicilio=" + direccionDomicilio + ", cedula=" + cedula + ", telefono=" + telefono + ", celular=" + celular + ", correo=" + correo + ", guiaAula=" + guiaAula + ", sucursalId=" + sucursalId + ", sucursal=" + sucursal + '}';
+    }
+    
+    //Metodos Equals y hashcode
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.docenteId);
+        hash = 79 * hash + Objects.hashCode(this.numeroProfesor);
+        hash = 79 * hash + Objects.hashCode(this.nombre);
+        hash = 79 * hash + Objects.hashCode(this.apellidos);
+        hash = 79 * hash + Objects.hashCode(this.fechaNacimiento);
+        hash = 79 * hash + Objects.hashCode(this.nacionalidad);
+        hash = 79 * hash + Objects.hashCode(this.departamento);
+        hash = 79 * hash + Objects.hashCode(this.direccionDomicilio);
+        hash = 79 * hash + Objects.hashCode(this.cedula);
+        hash = 79 * hash + Objects.hashCode(this.telefono);
+        hash = 79 * hash + Objects.hashCode(this.celular);
+        hash = 79 * hash + Objects.hashCode(this.correo);
+        hash = 79 * hash + Objects.hashCode(this.guiaAula);
+        hash = 79 * hash + Objects.hashCode(this.sucursalId);
+        hash = 79 * hash + Objects.hashCode(this.sucursal);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DocenteEntity other = (DocenteEntity) obj;
+        if (!Objects.equals(this.numeroProfesor, other.numeroProfesor)) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.apellidos, other.apellidos)) {
+            return false;
+        }
+        if (!Objects.equals(this.nacionalidad, other.nacionalidad)) {
+            return false;
+        }
+        if (!Objects.equals(this.departamento, other.departamento)) {
+            return false;
+        }
+        if (!Objects.equals(this.direccionDomicilio, other.direccionDomicilio)) {
+            return false;
+        }
+        if (!Objects.equals(this.cedula, other.cedula)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefono, other.telefono)) {
+            return false;
+        }
+        if (!Objects.equals(this.celular, other.celular)) {
+            return false;
+        }
+        if (!Objects.equals(this.correo, other.correo)) {
+            return false;
+        }
+        if (!Objects.equals(this.docenteId, other.docenteId)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaNacimiento, other.fechaNacimiento)) {
+            return false;
+        }
+        if (!Objects.equals(this.guiaAula, other.guiaAula)) {
+            return false;
+        }
+        if (!Objects.equals(this.sucursalId, other.sucursalId)) {
+            return false;
+        }
+        return Objects.equals(this.sucursal, other.sucursal);
+    }
+    
+    
     
 }
