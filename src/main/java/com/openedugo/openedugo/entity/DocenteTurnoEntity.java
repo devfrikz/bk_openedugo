@@ -6,9 +6,12 @@ package com.openedugo.openedugo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -30,7 +33,17 @@ public class DocenteTurnoEntity {
      
               
     /**Declarar llaves foraneas**/ 
+     
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "turno_id")
+    private TurnoEntity turno;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "docente_id")
+    private DocenteEntity docente;
+
+ /** Declaracion de getter y setter **/
+    
     public Integer getDocenteId() {
         return docenteId;
     }
