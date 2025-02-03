@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "roles_permisos")
@@ -46,6 +47,32 @@ public class RolePermisoEntity {
     @Override
     public String toString() {
         return "RolePermisoEntity{" + "roleId=" + roleId + ", permisoId=" + permisoId + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.roleId);
+        hash = 37 * hash + Objects.hashCode(this.permisoId);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final RolePermisoEntity other = (RolePermisoEntity) obj;
+        if (!Objects.equals(this.roleId, other.roleId)) {
+            return false;
+        }
+        return Objects.equals(this.permisoId, other.permisoId);
     }
     
     

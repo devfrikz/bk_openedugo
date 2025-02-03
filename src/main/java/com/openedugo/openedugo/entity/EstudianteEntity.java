@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "estudiantes")
@@ -226,6 +227,48 @@ public class EstudianteEntity {
     @Override
     public String toString() {
         return "EstudianteEntity{" + "estudianteId=" + estudianteId + ", numeroAlumno=" + numeroAlumno + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", lugarNacimiento=" + lugarNacimiento + ", nacionalidad=" + nacionalidad + ", departamento=" + departamento + ", direccionDomicilio=" + direccionDomicilio + ", distrito=" + distrito + ", barrio=" + barrio + ", centroProcedencia=" + centroProcedencia + ", repitente=" + repitente + ", padecimiento=" + padecimiento + ", diagnosticado=" + diagnosticado + ", estadoId=" + estadoId + ", sucursalId=" + sucursalId + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.estudianteId);
+        hash = 37 * hash + Objects.hashCode(this.numeroAlumno);
+        hash = 37 * hash + Objects.hashCode(this.nombre);
+        hash = 37 * hash + Objects.hashCode(this.apellido);
+        hash = 37 * hash + Objects.hashCode(this.estadoId);
+        hash = 37 * hash + Objects.hashCode(this.sucursalId);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final EstudianteEntity other = (EstudianteEntity) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.apellido, other.apellido)) {
+            return false;
+        }
+        if (!Objects.equals(this.estudianteId, other.estudianteId)) {
+            return false;
+        }
+        if (!Objects.equals(this.numeroAlumno, other.numeroAlumno)) {
+            return false;
+        }
+        if (!Objects.equals(this.estadoId, other.estadoId)) {
+            return false;
+        }
+        return Objects.equals(this.sucursalId, other.sucursalId);
     }
     
     

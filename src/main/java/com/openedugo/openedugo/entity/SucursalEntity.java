@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name="sucursales")
@@ -72,6 +73,32 @@ public class SucursalEntity {
     @Override
     public String toString() {
         return "SucursalEntity{" + "sucursalId=" + sucursalId + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.sucursalId);
+        hash = 67 * hash + Objects.hashCode(this.nombre);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SucursalEntity other = (SucursalEntity) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        return Objects.equals(this.sucursalId, other.sucursalId);
     }
     
     

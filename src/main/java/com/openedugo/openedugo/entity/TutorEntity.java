@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tutor")
@@ -134,6 +135,36 @@ public class TutorEntity {
     @Override
     public String toString() {
         return "TutorEntity{" + "tutorId=" + tutorId + ", estudianteId=" + estudianteId + ", tipo=" + tipo + ", nombre=" + nombre + ", celular=" + celular + ", centro_trabajo=" + centro_trabajo + ", trabajo_celular=" + trabajo_celular + ", profesion=" + profesion + ", ingreso_estimado=" + ingreso_estimado + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 19 * hash + Objects.hashCode(this.tutorId);
+        hash = 19 * hash + Objects.hashCode(this.estudianteId);
+        hash = 19 * hash + Objects.hashCode(this.tipo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TutorEntity other = (TutorEntity) obj;
+        if (!Objects.equals(this.tutorId, other.tutorId)) {
+            return false;
+        }
+        if (!Objects.equals(this.estudianteId, other.estudianteId)) {
+            return false;
+        }
+        return this.tipo == other.tipo;
     }
     
     
