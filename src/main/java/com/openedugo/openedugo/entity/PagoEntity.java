@@ -6,9 +6,12 @@ package com.openedugo.openedugo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.sql.Date;
 
@@ -34,15 +37,20 @@ public class PagoEntity {
    
    @Column(name="referencia_pago")
     private String referenciaPago;
-    
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "factura_id",nullable = false)
-    //private facturaId factura;
-    
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "sucursal_id")
-    //private metodoPagoId metodo_Pago_Id;
    
+       /*
+    Keys
+   */
+   
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "factura_id",nullable = false)
+    private FacturaEntity factura;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "metodos_pago")
+    private MetodoPagoEntity metodo_Pago;
+   
+
    
     // Getter and setter 
 

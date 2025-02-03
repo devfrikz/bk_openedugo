@@ -3,9 +3,12 @@ package com.openedugo.openedugo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.util.Date;
 
@@ -19,14 +22,6 @@ public class DetalleFacturaEntity {
     @Column(name = "detalle_id")
     private Integer id;
     
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "conceptos_pago_id",nullable = false)
-    //private Rol conceptos_pago;
-    
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "sucursal_id")
-    //private Factura_id Factura_id;
-    
     @Column(name = "cantidad")
     private Integer cantidad;
     
@@ -35,6 +30,22 @@ public class DetalleFacturaEntity {
     
     @Column(name = "total")
     private Double total;
+    
+        
+    // Keys
+    
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "factura_id")
+    private FacturaEntity factura;
+    
+ 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "concepto_pago_id")
+    private ConceptosPagoEntity conceptoPago;
+    
+ //////
+    
 
     public Integer getId() {
         return id;
