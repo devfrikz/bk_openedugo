@@ -5,11 +5,15 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
+import java.util.LinkedList;
 import java.util.Objects;
 
 @Entity
@@ -20,8 +24,9 @@ public class TutorEntity {
     @Column(name = "tutor_id")
     private Integer tutorId;
     
-    @Column(name = "estudiante_id", nullable = false)
-    private Integer estudianteId;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "estudiante_id", nullable = false)
+    private LinkedList<EstudianteEntity> estudiante;
     
     @Column(name = "tipo", nullable = true)
     @Enumerated(EnumType.STRING)
@@ -48,9 +53,9 @@ public class TutorEntity {
     public TutorEntity() {
     }
 
-    public TutorEntity(Integer tutorId, Integer estudianteId, TipoTutor tipo, String nombre, String celular, String centro_trabajo, String trabajo_celular, String profesion, BigDecimal ingreso_estimado) {
+    public TutorEntity(Integer tutorId, LinkedList<EstudianteEntity> estudiante, TipoTutor tipo, String nombre, String celular, String centro_trabajo, String trabajo_celular, String profesion, BigDecimal ingreso_estimado) {
         this.tutorId = tutorId;
-        this.estudianteId = estudianteId;
+        this.estudiante = estudiante;
         this.tipo = tipo;
         this.nombre = nombre;
         this.celular = celular;
@@ -68,12 +73,12 @@ public class TutorEntity {
         this.tutorId = tutorId;
     }
 
-    public Integer getEstudianteId() {
-        return estudianteId;
+    public LinkedList<EstudianteEntity> getEstudiante() {
+        return estudiante;
     }
 
-    public void setEstudianteId(Integer estudianteId) {
-        this.estudianteId = estudianteId;
+    public void setEstudiante(LinkedList<EstudianteEntity> estudiante) {
+        this.estudiante = estudiante;
     }
 
     public TipoTutor getTipo() {
@@ -134,14 +139,14 @@ public class TutorEntity {
 
     @Override
     public String toString() {
-        return "TutorEntity{" + "tutorId=" + tutorId + ", estudianteId=" + estudianteId + ", tipo=" + tipo + ", nombre=" + nombre + ", celular=" + celular + ", centro_trabajo=" + centro_trabajo + ", trabajo_celular=" + trabajo_celular + ", profesion=" + profesion + ", ingreso_estimado=" + ingreso_estimado + '}';
+        return "TutorEntity{" + "tutorId=" + tutorId + ", estudiante=" + estudiante + ", tipo=" + tipo + ", nombre=" + nombre + ", celular=" + celular + ", centro_trabajo=" + centro_trabajo + ", trabajo_celular=" + trabajo_celular + ", profesion=" + profesion + ", ingreso_estimado=" + ingreso_estimado + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 19 * hash + Objects.hashCode(this.tutorId);
-        hash = 19 * hash + Objects.hashCode(this.estudianteId);
+        hash = 19 * hash + Objects.hashCode(this.estudiante);
         hash = 19 * hash + Objects.hashCode(this.tipo);
         return hash;
     }
@@ -161,7 +166,7 @@ public class TutorEntity {
         if (!Objects.equals(this.tutorId, other.tutorId)) {
             return false;
         }
-        if (!Objects.equals(this.estudianteId, other.estudianteId)) {
+        if (!Objects.equals(this.estudiante, other.estudiante)) {
             return false;
         }
         return this.tipo == other.tipo;

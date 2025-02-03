@@ -2,9 +2,11 @@ package com.openedugo.openedugo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.Objects;
 
@@ -23,6 +25,10 @@ public class EstadoEntity {
     @Column(name = "descripcion", nullable = true, length = 255)
     private String descripcion;
 
+    // Relaciones
+    @OneToOne(fetch = FetchType.LAZY)
+    private EstudianteEntity estudiante;
+    
     public EstadoEntity() {
     }
 

@@ -2,9 +2,12 @@ package com.openedugo.openedugo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Objects;
 
@@ -22,18 +25,20 @@ public class AulaEntity {
     @Column(name = "capacidad", nullable = true)
     private Integer capacidad;
     
-    @Column(name = "sucursal_id", nullable = true)
-    private Integer sucursalId;
+    @OneToMany(mappedBy = "aula")
+    @JoinColumn(name = "sucursal_id", nullable = true)
+    private SucursalEntity sucursal;
 
     public AulaEntity() {
     }
 
-    public AulaEntity(Integer aulaId, String nombre, Integer capacidad, Integer sucursalId) {
+    public AulaEntity(Integer aulaId, String nombre, Integer capacidad, SucursalEntity sucursal) {
         this.aulaId = aulaId;
         this.nombre = nombre;
         this.capacidad = capacidad;
-        this.sucursalId = sucursalId;
+        this.sucursal = sucursal;
     }
+
 
     public Integer getAulaId() {
         return aulaId;
@@ -59,25 +64,27 @@ public class AulaEntity {
         this.capacidad = capacidad;
     }
 
-    public Integer getSucursalId() {
-        return sucursalId;
+    public SucursalEntity getSucursal() {
+        return sucursal;
     }
 
-    public void setSucursalId(Integer sucursalId) {
-        this.sucursalId = sucursalId;
+    public void setSucursal(SucursalEntity sucursal) {
+        this.sucursal = sucursal;
     }
+
+    
 
     @Override
     public String toString() {
-        return "AulaEntity{" + "aulaId=" + aulaId + ", nombre=" + nombre + ", capacidad=" + capacidad + ", sucursalId=" + sucursalId + '}';
+        return "AulaEntity{" + "aulaId=" + aulaId + ", nombre=" + nombre + ", capacidad=" + capacidad + ", sucursalId=" + sucursal + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.aulaId);
-        hash = 23 * hash + Objects.hashCode(this.nombre);
-        hash = 23 * hash + Objects.hashCode(this.sucursalId);
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.aulaId);
+        hash = 71 * hash + Objects.hashCode(this.nombre);
+        hash = 71 * hash + Objects.hashCode(this.sucursal);
         return hash;
     }
 
@@ -99,8 +106,10 @@ public class AulaEntity {
         if (!Objects.equals(this.aulaId, other.aulaId)) {
             return false;
         }
-        return Objects.equals(this.sucursalId, other.sucursalId);
+        return Objects.equals(this.sucursal, other.sucursal);
     }
+
+    
     
     
 }
