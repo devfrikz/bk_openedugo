@@ -5,8 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.sql.Date;
+import java.util.LinkedList;
+import java.util.Objects;
 
 @Entity
 @Table(name = "estudiantes")
@@ -58,16 +62,18 @@ public class EstudianteEntity {
     @Column(name = "diagnosticado", nullable = true)
     private char diagnosticado;
     
-    @Column(name = "estado_id", nullable = true)
-    private Integer estadoId;
+    @OneToOne
+    @JoinColumn(name = "estado_id", nullable = true)
+    private EstadoEntity estado;
     
-    @Column(name = "sucursal_id", nullable = true)
-    private Integer sucursalId;
+    @OneToOne
+    @JoinColumn(name = "sucursal_id", nullable = true)
+    private SucursalEntity sucursal;
 
     public EstudianteEntity() {
     }
 
-    public EstudianteEntity(Integer estudianteId, Integer numeroAlumno, String nombre, String apellido, Date fechaNacimiento, String lugarNacimiento, String nacionalidad, String departamento, String direccionDomicilio, String distrito, String barrio, String centroProcedencia, char repitente, String padecimiento, char diagnosticado, Integer estadoId, Integer sucursalId) {
+    public EstudianteEntity(Integer estudianteId, Integer numeroAlumno, String nombre, String apellido, Date fechaNacimiento, String lugarNacimiento, String nacionalidad, String departamento, String direccionDomicilio, String distrito, String barrio, String centroProcedencia, char repitente, String padecimiento, char diagnosticado, EstadoEntity estado, SucursalEntity sucursal) {
         this.estudianteId = estudianteId;
         this.numeroAlumno = numeroAlumno;
         this.nombre = nombre;
@@ -83,8 +89,8 @@ public class EstudianteEntity {
         this.repitente = repitente;
         this.padecimiento = padecimiento;
         this.diagnosticado = diagnosticado;
-        this.estadoId = estadoId;
-        this.sucursalId = sucursalId;
+        this.estado = estado;
+        this.sucursal = sucursal;
     }
 
     public Integer getEstudianteId() {
@@ -207,20 +213,67 @@ public class EstudianteEntity {
         this.diagnosticado = diagnosticado;
     }
 
-    public Integer getEstadoId() {
-        return estadoId;
+    public EstadoEntity getEstado() {
+        return estado;
     }
 
-    public void setEstadoId(Integer estadoId) {
-        this.estadoId = estadoId;
+    public void setEstado(EstadoEntity estado) {
+        this.estado = estado;
     }
 
-    public Integer getSucursalId() {
-        return sucursalId;
+    public SucursalEntity getSucursal() {
+        return sucursal;
     }
 
-    public void setSucursalId(Integer sucursalId) {
-        this.sucursalId = sucursalId;
+    public void setSucursal(SucursalEntity sucursal) {
+        this.sucursal = sucursal;
+    }
+
+    @Override
+    public String toString() {
+        return "EstudianteEntity{" + "estudianteId=" + estudianteId + ", numeroAlumno=" + numeroAlumno + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", lugarNacimiento=" + lugarNacimiento + ", nacionalidad=" + nacionalidad + ", departamento=" + departamento + ", direccionDomicilio=" + direccionDomicilio + ", distrito=" + distrito + ", barrio=" + barrio + ", centroProcedencia=" + centroProcedencia + ", repitente=" + repitente + ", padecimiento=" + padecimiento + ", diagnosticado=" + diagnosticado + ", estado=" + estado + ", sucursal=" + sucursal + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.estudianteId);
+        hash = 37 * hash + Objects.hashCode(this.numeroAlumno);
+        hash = 37 * hash + Objects.hashCode(this.nombre);
+        hash = 37 * hash + Objects.hashCode(this.apellido);
+        hash = 37 * hash + Objects.hashCode(this.estado);
+        hash = 37 * hash + Objects.hashCode(this.sucursal);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final EstudianteEntity other = (EstudianteEntity) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.apellido, other.apellido)) {
+            return false;
+        }
+        if (!Objects.equals(this.estudianteId, other.estudianteId)) {
+            return false;
+        }
+        if (!Objects.equals(this.numeroAlumno, other.numeroAlumno)) {
+            return false;
+        }
+        if (!Objects.equals(this.estado, other.estado)) {
+            return false;
+        }
+        return Objects.equals(this.sucursal, other.sucursal);
     }
     
     
