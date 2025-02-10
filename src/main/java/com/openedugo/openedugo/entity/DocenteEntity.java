@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.openedugo.openedugo.entity;
 
 import jakarta.persistence.Column;
@@ -16,73 +12,73 @@ import jakarta.persistence.Table;
 import java.sql.Date;
 import java.util.Objects;
 
-
-
-
 /**
+ * Entidad que representa un docente.
  *
- * @author websuke
+ * ERROR CORREGIDO:
+ * Se eliminó el mapeo duplicado de la columna "sucursal_id".
+ * Originalmente se tenía tanto un campo primitivo "sucursalId" como la relación ManyToOne a SucursalEntity
+ * que mapeaban la misma columna "sucursal_id". Ahora se utiliza únicamente la relación "sucursal".
  */
 @Entity
 @Table(name="docentes")
 public class DocenteEntity {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     @Column(name = "docente_id")
     private Integer docenteId;
-    
-    @Column(name = "numero_profesor",nullable = false, unique = true,length = 50)
+
+    @Column(name = "numero_profesor", nullable = false, unique = true, length = 50)
     private String numeroProfesor;
 
-    @Column(name="nombre", length = 100)
+    @Column(name = "nombre", length = 100)
     private String nombre;
-    
-    @Column(name="apellidos",length = 100)
-    private String apellidos;    
 
-    @Column(name= "fecha_nacimiento")
+    @Column(name = "apellidos", length = 100)
+    private String apellidos;
+
+    @Column(name = "fecha_nacimiento")
     private Date fechaNacimiento;
-    
-    @Column(name="nacionalidad",length = 50)
-    private String nacionalidad;
-    
-    @Column(name="departamento",length = 50)
-    private String departamento; 
-    
-    @Column(name="direccion_domicilio",length = 250)
-    private String direccionDomicilio; 
-    
-    @Column(name="cedula",length = 50)
-    private String cedula; 
-        
-    @Column(name="telefono",length = 50)
-    private String telefono; 
-    
-    @Column(name="celular",length = 50)
-    private String celular; 
 
-    @Column(name ="correo",length = 100)
+    @Column(name = "nacionalidad", length = 50)
+    private String nacionalidad;
+
+    @Column(name = "departamento", length = 50)
+    private String departamento;
+
+    @Column(name = "direccion_domicilio", length = 250)
+    private String direccionDomicilio;
+
+    @Column(name = "cedula", length = 50)
+    private String cedula;
+
+    @Column(name = "telefono", length = 50)
+    private String telefono;
+
+    @Column(name = "celular", length = 50)
+    private String celular;
+
+    @Column(name = "correo", length = 100)
     private String correo;
-    
-    @Column(name ="guia_aula",length = 100)
+
+    @Column(name = "guia_aula")
     private Boolean guiaAula;
-    
-    @Column(name ="sucursal_id")
-    private Integer sucursalId;
-    
+
+    // Se eliminó el campo primitivo "sucursalId" que duplicaba el mapeo de "sucursal_id".
+    // @Column(name = "sucursal_id")
+    // private Integer sucursalId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sucursal_id")
     private SucursalEntity sucursal;
-    
-    //constructor Vacio
-    
+
+    // Constructor vacío
     public DocenteEntity() {
     }
 
-    //Constructor con Parametros
-    public DocenteEntity(Integer docenteId, String numeroProfesor, String nombre, String apellidos, Date fechaNacimiento, String nacionalidad, String departamento, String direccionDomicilio, String cedula, String telefono, String celular, String correo, Boolean guiaAula, Integer sucursalId, SucursalEntity sucursal) {    
+    // Constructor con parámetros (se elimina el parámetro de sucursalId)
+    public DocenteEntity(Integer docenteId, String numeroProfesor, String nombre, String apellidos, Date fechaNacimiento, String nacionalidad, String departamento, String direccionDomicilio, String cedula, String telefono, String celular, String correo, Boolean guiaAula, SucursalEntity sucursal) {
         this.docenteId = docenteId;
         this.numeroProfesor = numeroProfesor;
         this.nombre = nombre;
@@ -96,11 +92,10 @@ public class DocenteEntity {
         this.celular = celular;
         this.correo = correo;
         this.guiaAula = guiaAula;
-        this.sucursalId = sucursalId;
         this.sucursal = sucursal;
     }
 
-    //getter y setter
+    // Getters y Setters
     public Integer getDocenteId() {
         return docenteId;
     }
@@ -205,22 +200,18 @@ public class DocenteEntity {
         this.guiaAula = guiaAula;
     }
 
-    public Integer getSucursalId() {
-        return sucursalId;
+    public SucursalEntity getSucursal() {
+        return sucursal;
     }
 
-    public void setSucursalId(Integer sucursalId) {
-        this.sucursalId = sucursalId;
+    public void setSucursal(SucursalEntity sucursal) {
+        this.sucursal = sucursal;
     }
-    
-    //Metodo ToString
 
     @Override
     public String toString() {
-        return "DocenteEntity{" + "docenteId=" + docenteId + ", numeroProfesor=" + numeroProfesor + ", nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + ", nacionalidad=" + nacionalidad + ", departamento=" + departamento + ", direccionDomicilio=" + direccionDomicilio + ", cedula=" + cedula + ", telefono=" + telefono + ", celular=" + celular + ", correo=" + correo + ", guiaAula=" + guiaAula + ", sucursalId=" + sucursalId + ", sucursal=" + sucursal + '}';
+        return "DocenteEntity{" + "docenteId=" + docenteId + ", numeroProfesor=" + numeroProfesor + ", nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + ", nacionalidad=" + nacionalidad + ", departamento=" + departamento + ", direccionDomicilio=" + direccionDomicilio + ", cedula=" + cedula + ", telefono=" + telefono + ", celular=" + celular + ", correo=" + correo + ", guiaAula=" + guiaAula + ", sucursal=" + sucursal + '}';
     }
-    
-    //Metodos Equals y hashcode
 
     @Override
     public int hashCode() {
@@ -238,7 +229,6 @@ public class DocenteEntity {
         hash = 79 * hash + Objects.hashCode(this.celular);
         hash = 79 * hash + Objects.hashCode(this.correo);
         hash = 79 * hash + Objects.hashCode(this.guiaAula);
-        hash = 79 * hash + Objects.hashCode(this.sucursalId);
         hash = 79 * hash + Objects.hashCode(this.sucursal);
         return hash;
     }
@@ -294,12 +284,7 @@ public class DocenteEntity {
         if (!Objects.equals(this.guiaAula, other.guiaAula)) {
             return false;
         }
-        if (!Objects.equals(this.sucursalId, other.sucursalId)) {
-            return false;
-        }
         return Objects.equals(this.sucursal, other.sucursal);
     }
-    
-    
-    
+
 }

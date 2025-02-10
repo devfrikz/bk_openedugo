@@ -4,12 +4,10 @@
  */
 package com.openedugo.openedugo.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -30,8 +28,10 @@ public class GradoEntity {
     private String nombre;
    
     @Column(name= "descripcion",length = 255)
-    private String descripcion;    
-    
+    private String descripcion;
+
+    @OneToMany(mappedBy = "grado")
+    private List<DivisionEntity> divisiones = new ArrayList<>();
     //Constructor Vacio
 
     public GradoEntity() {
@@ -44,7 +44,9 @@ public class GradoEntity {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
-    
+
+
+
     // Getter y Setter
     public Integer getGradoId() {
         return gradoId;

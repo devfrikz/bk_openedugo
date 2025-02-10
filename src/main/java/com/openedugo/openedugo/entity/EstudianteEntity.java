@@ -1,83 +1,87 @@
 package com.openedugo.openedugo.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.sql.Date;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "estudiantes")
 public class EstudianteEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "estudiante_id")
+    @Column(name = "estudiante_id", updatable = false, nullable = false)
     private Integer estudianteId;
-    
-    @Column(name = "numero_alumno", nullable = false)
+
+    @Column(name = "numero_alumno", nullable = false, unique = true)
     private Integer numeroAlumno;
-    
-    @Column(name = "nombre", nullable = false, length = 100)
-    private String nombre;
-    
-    @Column(name = "apellido", nullable = false, length = 100)
-    private String apellido;
-    
-    @Column(name = "fecha_nacimiento", nullable = true)
+
+    @Column(name = "nombres", nullable = false, length = 100)
+    private String nombres;
+
+    @Column(name = "apellidos", nullable = false, length = 100)
+    private String apellidos;
+
+    @Column(name = "fecha_nacimiento")
     private Date fechaNacimiento;
-    
-    @Column(name = "lugar_nacimiento", nullable = true, length = 100)
+
+    @Column(name = "lugar_nacimiento", length = 100)
     private String lugarNacimiento;
-    
-    @Column(name = "nacionalidad", nullable = true, length = 50)
+
+    @Column(name = "nacionalidad", length = 50)
     private String nacionalidad;
-    
-    @Column(name = "departamento", nullable = true, length = 50)
+
+    @Column(name = "departamento", length = 50)
     private String departamento;
-    
-    @Column(name = "direccion_domicilio", nullable = true, length = 255)
+
+    @Column(name = "direccion_domicilio", length = 255)
     private String direccionDomicilio;
-    
-    @Column(name = "distrito", nullable = true, length = 50)
+
+    @Column(name = "distrito", length = 50)
     private String distrito;
-    
-    @Column(name = "barrio", nullable = true, length = 50)
+
+    @Column(name = "barrio", length = 50)
     private String barrio;
-    
-    @Column(name = "centro_procedencia", nullable = true, length = 100)
+
+    @Column(name = "centro_procedencia", length = 100)
     private String centroProcedencia;
-    
-    @Column(name = "repitente", nullable = true)
-    private char repitente;
-    
-    @Column(name = "padecimiento", nullable = true, length = 255)
+
+    @Column(name = "repitente")
+    private Boolean repitente;
+
+    @Column(name = "padecimiento", length = 255)
     private String padecimiento;
-    
-    @Column(name = "diagnosticado", nullable = true)
-    private char diagnosticado;
-    
-    @OneToOne
-    @JoinColumn(name = "estado_id", nullable = true)
+
+    @Column(name = "diagnosticado")
+    private Boolean diagnosticado;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "estado_id")
     private EstadoEntity estado;
-    
-    @OneToOne
-    @JoinColumn(name = "sucursal_id", nullable = true)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sucursal_id")
     private SucursalEntity sucursal;
 
-    public EstudianteEntity() {
-    }
+    // Relación corregida: Un estudiante puede tener múltiples tutores
+    @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TutorEntity> tutores = new ArrayList<>();
 
-    public EstudianteEntity(Integer estudianteId, Integer numeroAlumno, String nombre, String apellido, Date fechaNacimiento, String lugarNacimiento, String nacionalidad, String departamento, String direccionDomicilio, String distrito, String barrio, String centroProcedencia, char repitente, String padecimiento, char diagnosticado, EstadoEntity estado, SucursalEntity sucursal) {
+    public EstudianteEntity() {}
+
+    // Constructor actualizado con nueva relación
+    public EstudianteEntity(Integer estudianteId, Integer numeroAlumno, String nombres, String apellidos,
+                            Date fechaNacimiento, String lugarNacimiento, String nacionalidad,
+                            String departamento, String direccionDomicilio, String distrito,
+                            String barrio, String centroProcedencia, Boolean repitente,
+                            String padecimiento, Boolean diagnosticado, EstadoEntity estado,
+                            SucursalEntity sucursal) {
         this.estudianteId = estudianteId;
         this.numeroAlumno = numeroAlumno;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.fechaNacimiento = fechaNacimiento;
         this.lugarNacimiento = lugarNacimiento;
         this.nacionalidad = nacionalidad;
@@ -93,188 +97,93 @@ public class EstudianteEntity {
         this.sucursal = sucursal;
     }
 
-    public Integer getEstudianteId() {
-        return estudianteId;
+    // Getters y Setters
+    public Integer getEstudianteId() { return estudianteId; }
+    public void setEstudianteId(Integer estudianteId) { this.estudianteId = estudianteId; }
+
+    public Integer getNumeroAlumno() { return numeroAlumno; }
+    public void setNumeroAlumno(Integer numeroAlumno) { this.numeroAlumno = numeroAlumno; }
+
+    public String getNombres() { return nombres; }
+    public void setNombres(String nombres) { this.nombres = nombres; }
+
+    public String getApellidos() { return apellidos; }
+    public void setApellidos(String apellidos) { this.apellidos = apellidos; }
+
+    public Date getFechaNacimiento() { return fechaNacimiento; }
+    public void setFechaNacimiento(Date fechaNacimiento) { this.fechaNacimiento = fechaNacimiento; }
+
+    public String getLugarNacimiento() { return lugarNacimiento; }
+    public void setLugarNacimiento(String lugarNacimiento) { this.lugarNacimiento = lugarNacimiento; }
+
+    public String getNacionalidad() { return nacionalidad; }
+    public void setNacionalidad(String nacionalidad) { this.nacionalidad = nacionalidad; }
+
+    public String getDepartamento() { return departamento; }
+    public void setDepartamento(String departamento) { this.departamento = departamento; }
+
+    public String getDireccionDomicilio() { return direccionDomicilio; }
+    public void setDireccionDomicilio(String direccionDomicilio) { this.direccionDomicilio = direccionDomicilio; }
+
+    public String getDistrito() { return distrito; }
+    public void setDistrito(String distrito) { this.distrito = distrito; }
+
+    public String getBarrio() { return barrio; }
+    public void setBarrio(String barrio) { this.barrio = barrio; }
+
+    public String getCentroProcedencia() { return centroProcedencia; }
+    public void setCentroProcedencia(String centroProcedencia) { this.centroProcedencia = centroProcedencia; }
+
+    public Boolean getRepitente() { return repitente; }
+    public void setRepitente(Boolean repitente) { this.repitente = repitente; }
+
+    public String getPadecimiento() { return padecimiento; }
+    public void setPadecimiento(String padecimiento) { this.padecimiento = padecimiento; }
+
+    public Boolean getDiagnosticado() { return diagnosticado; }
+    public void setDiagnosticado(Boolean diagnosticado) { this.diagnosticado = diagnosticado; }
+
+    public EstadoEntity getEstado() { return estado; }
+    public void setEstado(EstadoEntity estado) { this.estado = estado; }
+
+    public SucursalEntity getSucursal() { return sucursal; }
+    public void setSucursal(SucursalEntity sucursal) { this.sucursal = sucursal; }
+
+    public List<TutorEntity> getTutores() { return tutores; }
+    public void setTutores(List<TutorEntity> tutores) { this.tutores = tutores; }
+
+    // Métodos de relación bidireccional
+    public void addTutor(TutorEntity tutor) {
+        tutores.add(tutor);
+        tutor.setEstudiante(this);
     }
 
-    public void setEstudianteId(Integer estudianteId) {
-        this.estudianteId = estudianteId;
-    }
-
-    public Integer getNumeroAlumno() {
-        return numeroAlumno;
-    }
-
-    public void setNumeroAlumno(Integer numeroAlumno) {
-        this.numeroAlumno = numeroAlumno;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public String getLugarNacimiento() {
-        return lugarNacimiento;
-    }
-
-    public void setLugarNacimiento(String lugarNacimiento) {
-        this.lugarNacimiento = lugarNacimiento;
-    }
-
-    public String getNacionalidad() {
-        return nacionalidad;
-    }
-
-    public void setNacionalidad(String nacionalidad) {
-        this.nacionalidad = nacionalidad;
-    }
-
-    public String getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
-    }
-
-    public String getDireccionDomicilio() {
-        return direccionDomicilio;
-    }
-
-    public void setDireccionDomicilio(String direccionDomicilio) {
-        this.direccionDomicilio = direccionDomicilio;
-    }
-
-    public String getDistrito() {
-        return distrito;
-    }
-
-    public void setDistrito(String distrito) {
-        this.distrito = distrito;
-    }
-
-    public String getBarrio() {
-        return barrio;
-    }
-
-    public void setBarrio(String barrio) {
-        this.barrio = barrio;
-    }
-
-    public String getCentroProcedencia() {
-        return centroProcedencia;
-    }
-
-    public void setCentroProcedencia(String centroProcedencia) {
-        this.centroProcedencia = centroProcedencia;
-    }
-
-    public char getRepitente() {
-        return repitente;
-    }
-
-    public void setRepitente(char repitente) {
-        this.repitente = repitente;
-    }
-
-    public String getPadecimiento() {
-        return padecimiento;
-    }
-
-    public void setPadecimiento(String padecimiento) {
-        this.padecimiento = padecimiento;
-    }
-
-    public char getDiagnosticado() {
-        return diagnosticado;
-    }
-
-    public void setDiagnosticado(char diagnosticado) {
-        this.diagnosticado = diagnosticado;
-    }
-
-    public EstadoEntity getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoEntity estado) {
-        this.estado = estado;
-    }
-
-    public SucursalEntity getSucursal() {
-        return sucursal;
-    }
-
-    public void setSucursal(SucursalEntity sucursal) {
-        this.sucursal = sucursal;
+    public void removeTutor(TutorEntity tutor) {
+        tutores.remove(tutor);
+        tutor.setEstudiante(null);
     }
 
     @Override
-    public String toString() {
-        return "EstudianteEntity{" + "estudianteId=" + estudianteId + ", numeroAlumno=" + numeroAlumno + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", lugarNacimiento=" + lugarNacimiento + ", nacionalidad=" + nacionalidad + ", departamento=" + departamento + ", direccionDomicilio=" + direccionDomicilio + ", distrito=" + distrito + ", barrio=" + barrio + ", centroProcedencia=" + centroProcedencia + ", repitente=" + repitente + ", padecimiento=" + padecimiento + ", diagnosticado=" + diagnosticado + ", estado=" + estado + ", sucursal=" + sucursal + '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EstudianteEntity)) return false;
+        EstudianteEntity that = (EstudianteEntity) o;
+        return Objects.equals(estudianteId, that.estudianteId) &&
+                Objects.equals(numeroAlumno, that.numeroAlumno);
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.estudianteId);
-        hash = 37 * hash + Objects.hashCode(this.numeroAlumno);
-        hash = 37 * hash + Objects.hashCode(this.nombre);
-        hash = 37 * hash + Objects.hashCode(this.apellido);
-        hash = 37 * hash + Objects.hashCode(this.estado);
-        hash = 37 * hash + Objects.hashCode(this.sucursal);
-        return hash;
+        return Objects.hash(estudianteId, numeroAlumno);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final EstudianteEntity other = (EstudianteEntity) obj;
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        if (!Objects.equals(this.apellido, other.apellido)) {
-            return false;
-        }
-        if (!Objects.equals(this.estudianteId, other.estudianteId)) {
-            return false;
-        }
-        if (!Objects.equals(this.numeroAlumno, other.numeroAlumno)) {
-            return false;
-        }
-        if (!Objects.equals(this.estado, other.estado)) {
-            return false;
-        }
-        return Objects.equals(this.sucursal, other.sucursal);
+    public String toString() {
+        return "EstudianteEntity{" +
+                "estudianteId=" + estudianteId +
+                ", numeroAlumno=" + numeroAlumno +
+                ", nombres='" + nombres + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                '}';
     }
-    
-    
 }

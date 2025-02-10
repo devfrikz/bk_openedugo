@@ -9,5 +9,4 @@ public class OpenedugoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OpenedugoApplication.class, args);
 	}
-
 }

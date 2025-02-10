@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.openedugo.openedugo.entity;
 
 import jakarta.persistence.Column;
@@ -16,69 +12,54 @@ import jakarta.persistence.Table;
 import java.sql.Date;
 import java.util.Objects;
 
-
 /**
+ * Entidad que representa la calificación de un estudiante.
  *
- * @author websuke
+ * ERROR CORREGIDO:
+ * Se eliminó el mapeo duplicado de las columnas "horario_id" y "estudiante_id" (en este caso, se mantiene la relación).
+ * Ahora se utiliza únicamente la relación ManyToOne para mapear la columna "estudiante_id".
  */
-
 @Entity
-@Table (name = "calificaciones")
+@Table(name = "calificaciones")
 public class CalificacionEntity {
-    
+
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY) 
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "calificacion_id")
     private Integer calificacionId;
-    
-    @Column(name = "estudiante_id",nullable = false)
-    private Integer estudianteId;
-     
-    @Column(name = "materia_id",nullable = false)
-    private Integer materiaId;
-    
-    @Column(name = "docente_id",nullable = false)
-    private Integer docenteId;
 
-    @Column(name="fecha")
+    @Column(name = "fecha")
     private Date fecha;
-    
-    @Column(name="nota")
-    private Double nota;   
 
-    @Column(name="comentario")
-    private String comentario;  
-        
-    @Column(name ="periodo", length = 25)
+    @Column(name = "nota")
+    private Double nota;
+
+    @Column(name = "comentario")
+    private String comentario;
+
+    @Column(name = "periodo", length = 25)
     private String periodo;
-    
-    /** Declaracion de llave Foraneas **/
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "estudiante_id")
-    private EstudianteEntity estudiante;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "materia_id")
-    private MateriaEntity materia;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "docente_id")
-    private DocenteEntity docente;
-    
-    //Constructor Vacio
-    
-    public CalificacionEntity() {
-    }
 
-    //Constructor con Parametros
-    
-    public CalificacionEntity(Integer calificacionId, Integer estudianteId, Integer materiaId, Integer docenteId, Date fecha, Double nota, String comentario, String periodo, EstudianteEntity estudiante, MateriaEntity materia, DocenteEntity docente) {
+    // Mapeo de la columna estudiante_id mediante la relación ManyToOne.
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "estudiante_id", nullable = false)
+    private EstudianteEntity estudiante;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "materia_id", nullable = false)
+    private MateriaEntity materia;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "docente_id", nullable = false)
+    private DocenteEntity docente;
+
+    // Constructor vacío
+    public CalificacionEntity() {}
+
+    // Constructor con parámetros (sin campos duplicados)
+    public CalificacionEntity(Integer calificacionId, Date fecha, Double nota, String comentario, String periodo,
+                              EstudianteEntity estudiante, MateriaEntity materia, DocenteEntity docente) {
         this.calificacionId = calificacionId;
-        this.estudianteId = estudianteId;
-        this.materiaId = materiaId;
-        this.docenteId = docenteId;
         this.fecha = fecha;
         this.nota = nota;
         this.comentario = comentario;
@@ -88,38 +69,13 @@ public class CalificacionEntity {
         this.docente = docente;
     }
 
-    /** Declaracion de getter y setter **/
-    
+    // Getters y Setters
     public Integer getCalificacionId() {
         return calificacionId;
     }
 
     public void setCalificacionId(Integer calificacionId) {
         this.calificacionId = calificacionId;
-    }
-
-    public Integer getEstudianteId() {
-        return estudianteId;
-    }
-
-    public void setEstudianteId(Integer estudianteId) {
-        this.estudianteId = estudianteId;
-    }
-
-    public Integer getMateriaId() {
-        return materiaId;
-    }
-
-    public void setMateriaId(Integer materiaId) {
-        this.materiaId = materiaId;
-    }
-
-    public Integer getDocenteId() {
-        return docenteId;
-    }
-
-    public void setDocenteId(Integer docenteId) {
-        this.docenteId = docenteId;
     }
 
     public Date getFecha() {
@@ -154,29 +110,55 @@ public class CalificacionEntity {
         this.periodo = periodo;
     }
 
-    //Metodo ToString
+    public EstudianteEntity getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(EstudianteEntity estudiante) {
+        this.estudiante = estudiante;
+    }
+
+    public MateriaEntity getMateria() {
+        return materia;
+    }
+
+    public void setMateria(MateriaEntity materia) {
+        this.materia = materia;
+    }
+
+    public DocenteEntity getDocente() {
+        return docente;
+    }
+
+    public void setDocente(DocenteEntity docente) {
+        this.docente = docente;
+    }
 
     @Override
     public String toString() {
-        return "CalificacionEntity{" + "calificacionId=" + calificacionId + ", estudianteId=" + estudianteId + ", materiaId=" + materiaId + ", docenteId=" + docenteId + ", fecha=" + fecha + ", nota=" + nota + ", comentario=" + comentario + ", periodo=" + periodo + ", estudiante=" + estudiante + ", materia=" + materia + ", docente=" + docente + '}';
+        return "CalificacionEntity{" +
+                "calificacionId=" + calificacionId +
+                ", fecha=" + fecha +
+                ", nota=" + nota +
+                ", comentario=" + comentario +
+                ", periodo=" + periodo +
+                ", estudiante=" + estudiante +
+                ", materia=" + materia +
+                ", docente=" + docente +
+                '}';
     }
-    
-    //Metodos Equals y hashcode
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 47 * hash + Objects.hashCode(this.calificacionId);
-        hash = 47 * hash + Objects.hashCode(this.estudianteId);
-        hash = 47 * hash + Objects.hashCode(this.materiaId);
-        hash = 47 * hash + Objects.hashCode(this.docenteId);
-        hash = 47 * hash + Objects.hashCode(this.fecha);
-        hash = 47 * hash + Objects.hashCode(this.nota);
-        hash = 47 * hash + Objects.hashCode(this.comentario);
-        hash = 47 * hash + Objects.hashCode(this.periodo);
-        hash = 47 * hash + Objects.hashCode(this.estudiante);
-        hash = 47 * hash + Objects.hashCode(this.materia);
-        hash = 47 * hash + Objects.hashCode(this.docente);
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.calificacionId);
+        hash = 23 * hash + Objects.hashCode(this.fecha);
+        hash = 23 * hash + Objects.hashCode(this.nota);
+        hash = 23 * hash + Objects.hashCode(this.comentario);
+        hash = 23 * hash + Objects.hashCode(this.periodo);
+        hash = 23 * hash + Objects.hashCode(this.estudiante);
+        hash = 23 * hash + Objects.hashCode(this.materia);
+        hash = 23 * hash + Objects.hashCode(this.docente);
         return hash;
     }
 
@@ -185,45 +167,17 @@ public class CalificacionEntity {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         final CalificacionEntity other = (CalificacionEntity) obj;
-        if (!Objects.equals(this.comentario, other.comentario)) {
-            return false;
-        }
-        if (!Objects.equals(this.periodo, other.periodo)) {
-            return false;
-        }
-        if (!Objects.equals(this.calificacionId, other.calificacionId)) {
-            return false;
-        }
-        if (!Objects.equals(this.estudianteId, other.estudianteId)) {
-            return false;
-        }
-        if (!Objects.equals(this.materiaId, other.materiaId)) {
-            return false;
-        }
-        if (!Objects.equals(this.docenteId, other.docenteId)) {
-            return false;
-        }
-        if (!Objects.equals(this.fecha, other.fecha)) {
-            return false;
-        }
-        if (!Objects.equals(this.nota, other.nota)) {
-            return false;
-        }
-        if (!Objects.equals(this.estudiante, other.estudiante)) {
-            return false;
-        }
-        if (!Objects.equals(this.materia, other.materia)) {
-            return false;
-        }
-        return Objects.equals(this.docente, other.docente);
+        return Objects.equals(this.calificacionId, other.calificacionId) &&
+                Objects.equals(this.fecha, other.fecha) &&
+                Objects.equals(this.nota, other.nota) &&
+                Objects.equals(this.comentario, other.comentario) &&
+                Objects.equals(this.periodo, other.periodo) &&
+                Objects.equals(this.estudiante, other.estudiante) &&
+                Objects.equals(this.materia, other.materia) &&
+                Objects.equals(this.docente, other.docente);
     }
-    
-    
 }
