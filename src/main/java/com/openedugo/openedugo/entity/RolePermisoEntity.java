@@ -1,84 +1,64 @@
 package com.openedugo.openedugo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
-import java.util.LinkedList;
+import jakarta.persistence.*;
+import java.util.Set;
 import java.util.Objects;
 
 @Entity
 @Table(name = "roles_permisos")
 public class RolePermisoEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+    @Column(name = "id") // Se necesita un ID único en la tabla intermedia.
+    private Integer id;
+
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id", nullable = false)
-    private LinkedList<RoleEntity> role;
-    
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "permiso_id", nullable = false)
-    private LinkedList<PermisoEntity> permiso;
+    @JoinTable(
+            name = "roles_permisos",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "permiso_id")
+    )
+    private Set<PermisoEntity> permisos;
 
     public RolePermisoEntity() {
     }
 
-    public RolePermisoEntity(LinkedList<RoleEntity> role, LinkedList<PermisoEntity> permiso) {
-        this.role = role;
-        this.permiso = permiso;
+    public RolePermisoEntity(Set<PermisoEntity> permisos) {
+        this.permisos = permisos;
     }
 
-    public LinkedList<RoleEntity> getRole() {
-        return role;
+    public Integer getId() {
+        return id;
     }
 
-    public void setRole(LinkedList<RoleEntity> role) {
-        this.role = role;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public LinkedList<PermisoEntity> getPermiso() {
-        return permiso;
+    public Set<PermisoEntity> getPermisos() {
+        return permisos;
     }
 
-    public void setPermiso(LinkedList<PermisoEntity> permiso) {
-        this.permiso = permiso;
+    public void setPermisos(Set<PermisoEntity> permisos) {
+        this.permisos = permisos;
     }
 
     @Override
     public String toString() {
-        return "RolePermisoEntity{" + "role=" + role + ", permiso=" + permiso + '}';
+        return "RolePermisoEntity{" + "id=" + id + ", permisos=" + permisos + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.role);
-        hash = 37 * hash + Objects.hashCode(this.permiso);
-        return hash;
+        return Objects.hash(id, permisos);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final RolePermisoEntity other = (RolePermisoEntity) obj;
-        if (!Objects.equals(this.role, other.role)) {
-            return false;
-        }
-        return Objects.equals(this.permiso, other.permiso);
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        RolePermisoEntity that = (RolePermisoEntity) obj;
+        return Objects.equals(id, that.id) && Objects.equals(permisos, that.permisos);
     }
-    
-    
 }

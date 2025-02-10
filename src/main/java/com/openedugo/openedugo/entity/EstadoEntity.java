@@ -1,49 +1,40 @@
 package com.openedugo.openedugo.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import java.util.Objects;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "estados")
 public class EstadoEntity {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "estado_id")
-    private Integer estadoId;
-    
+    private Integer id;
+
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
-    
-    @Column(name = "descripcion", nullable = true, length = 255)
+
+    @Column(name = "descripcion", length = 255)
     private String descripcion;
 
-    // Relaciones
-    @OneToOne(fetch = FetchType.LAZY)
-    private EstudianteEntity estudiante;
-    
+    // Constructor vacío
     public EstadoEntity() {
     }
 
-    public EstadoEntity(Integer estadoId, String nombre, String descripcion) {
-        this.estadoId = estadoId;
+    // Constructor con parámetros
+    public EstadoEntity(Integer id, String nombre, String descripcion) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
-    public Integer getEstadoId() {
-        return estadoId;
+    // Getters y Setters
+    public Integer getId() {
+        return id;
     }
 
-    public void setEstadoId(Integer estadoId) {
-        this.estadoId = estadoId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -64,34 +55,10 @@ public class EstadoEntity {
 
     @Override
     public String toString() {
-        return "EstadoEntity{" + "estadoId=" + estadoId + ", nombre=" + nombre + ", descripcion=" + descripcion + '}';
+        return "EstadoEntity{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 29 * hash + Objects.hashCode(this.estadoId);
-        hash = 29 * hash + Objects.hashCode(this.nombre);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final EstadoEntity other = (EstadoEntity) obj;
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        return Objects.equals(this.estadoId, other.estadoId);
-    }
-    
-    
 }

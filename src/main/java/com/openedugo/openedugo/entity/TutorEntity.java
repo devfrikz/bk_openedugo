@@ -1,176 +1,111 @@
 package com.openedugo.openedugo.entity;
 
 import com.openedugo.openedugo.enums.TipoTutor;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
-import java.util.LinkedList;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tutor")
 public class TutorEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tutor_id")
     private Integer tutorId;
-    
-    @OneToMany(fetch = FetchType.LAZY)
+
+    // Relación corregida: ManyToOne con estudiante
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "estudiante_id", nullable = false)
-    private LinkedList<EstudianteEntity> estudiante;
-    
-    @Column(name = "tipo", nullable = true)
+    private EstudianteEntity estudiante;
+
     @Enumerated(EnumType.STRING)
+    @Column(name = "tipo", nullable = false)
     private TipoTutor tipo;
-    
-    @Column(name = "nombre", nullable = true, length = 100)
+
+    @Column(name = "nombre", length = 100)
     private String nombre;
-    
-    @Column(name = "celular", nullable = true, length = 20)
+
+    @Column(name = "celular", length = 20)
     private String celular;
-    
-    @Column(name = "centro_trabajo", nullable = true, length = 100)
-    private String centro_trabajo;
-    
-    @Column(name = "trabajo_celular", nullable = true, length = 20)
-    private String trabajo_celular;
-    
-    @Column(name = "profesion", nullable = true, length = 100)
+
+    @Column(name = "centro_trabajo", length = 100)
+    private String centroTrabajo;
+
+    @Column(name = "trabajo_celular", length = 20)
+    private String trabajoCelular;
+
+    @Column(name = "profesion", length = 100)
     private String profesion;
-    
-    @Column(name = "ingreso_estimado",precision = 10, scale = 2 , nullable = true)
-    private BigDecimal ingreso_estimado;
 
-    public TutorEntity() {
-    }
+    @Column(name = "ingreso_estimado", precision = 10, scale = 2)
+    private BigDecimal ingresoEstimado;
 
-    public TutorEntity(Integer tutorId, LinkedList<EstudianteEntity> estudiante, TipoTutor tipo, String nombre, String celular, String centro_trabajo, String trabajo_celular, String profesion, BigDecimal ingreso_estimado) {
-        this.tutorId = tutorId;
+    public TutorEntity() {}
+
+    // Constructor actualizado
+    public TutorEntity(EstudianteEntity estudiante, TipoTutor tipo, String nombre,
+                       String celular, String centroTrabajo, String trabajoCelular,
+                       String profesion, BigDecimal ingresoEstimado) {
         this.estudiante = estudiante;
         this.tipo = tipo;
         this.nombre = nombre;
         this.celular = celular;
-        this.centro_trabajo = centro_trabajo;
-        this.trabajo_celular = trabajo_celular;
+        this.centroTrabajo = centroTrabajo;
+        this.trabajoCelular = trabajoCelular;
         this.profesion = profesion;
-        this.ingreso_estimado = ingreso_estimado;
+        this.ingresoEstimado = ingresoEstimado;
     }
 
-    public Integer getTutorId() {
-        return tutorId;
-    }
+    // Getters y Setters
+    public Integer getTutorId() { return tutorId; }
+    public void setTutorId(Integer tutorId) { this.tutorId = tutorId; }
 
-    public void setTutorId(Integer tutorId) {
-        this.tutorId = tutorId;
-    }
+    public EstudianteEntity getEstudiante() { return estudiante; }
+    public void setEstudiante(EstudianteEntity estudiante) { this.estudiante = estudiante; }
 
-    public LinkedList<EstudianteEntity> getEstudiante() {
-        return estudiante;
-    }
+    public TipoTutor getTipo() { return tipo; }
+    public void setTipo(TipoTutor tipo) { this.tipo = tipo; }
 
-    public void setEstudiante(LinkedList<EstudianteEntity> estudiante) {
-        this.estudiante = estudiante;
-    }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public TipoTutor getTipo() {
-        return tipo;
-    }
+    public String getCelular() { return celular; }
+    public void setCelular(String celular) { this.celular = celular; }
 
-    public void setTipo(TipoTutor tipo) {
-        this.tipo = tipo;
-    }
+    public String getCentroTrabajo() { return centroTrabajo; }
+    public void setCentroTrabajo(String centroTrabajo) { this.centroTrabajo = centroTrabajo; }
 
-    public String getNombre() {
-        return nombre;
-    }
+    public String getTrabajoCelular() { return trabajoCelular; }
+    public void setTrabajoCelular(String trabajoCelular) { this.trabajoCelular = trabajoCelular; }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public String getProfesion() { return profesion; }
+    public void setProfesion(String profesion) { this.profesion = profesion; }
 
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
-    public String getCentro_trabajo() {
-        return centro_trabajo;
-    }
-
-    public void setCentro_trabajo(String centro_trabajo) {
-        this.centro_trabajo = centro_trabajo;
-    }
-
-    public String getTrabajo_celular() {
-        return trabajo_celular;
-    }
-
-    public void setTrabajo_celular(String trabajo_celular) {
-        this.trabajo_celular = trabajo_celular;
-    }
-
-    public String getProfesion() {
-        return profesion;
-    }
-
-    public void setProfesion(String profesion) {
-        this.profesion = profesion;
-    }
-
-    public BigDecimal getIngreso_estimado() {
-        return ingreso_estimado;
-    }
-
-    public void setIngreso_estimado(BigDecimal ingreso_estimado) {
-        this.ingreso_estimado = ingreso_estimado;
-    }
+    public BigDecimal getIngresoEstimado() { return ingresoEstimado; }
+    public void setIngresoEstimado(BigDecimal ingresoEstimado) { this.ingresoEstimado = ingresoEstimado; }
 
     @Override
-    public String toString() {
-        return "TutorEntity{" + "tutorId=" + tutorId + ", estudiante=" + estudiante + ", tipo=" + tipo + ", nombre=" + nombre + ", celular=" + celular + ", centro_trabajo=" + centro_trabajo + ", trabajo_celular=" + trabajo_celular + ", profesion=" + profesion + ", ingreso_estimado=" + ingreso_estimado + '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TutorEntity)) return false;
+        TutorEntity that = (TutorEntity) o;
+        return Objects.equals(tutorId, that.tutorId) &&
+                tipo == that.tipo &&
+                Objects.equals(estudiante, that.estudiante);
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 19 * hash + Objects.hashCode(this.tutorId);
-        hash = 19 * hash + Objects.hashCode(this.estudiante);
-        hash = 19 * hash + Objects.hashCode(this.tipo);
-        return hash;
+        return Objects.hash(tutorId, tipo, estudiante);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final TutorEntity other = (TutorEntity) obj;
-        if (!Objects.equals(this.tutorId, other.tutorId)) {
-            return false;
-        }
-        if (!Objects.equals(this.estudiante, other.estudiante)) {
-            return false;
-        }
-        return this.tipo == other.tipo;
+    public String toString() {
+        return "TutorEntity{" +
+                "tutorId=" + tutorId +
+                ", tipo=" + tipo +
+                ", nombre='" + nombre + '\'' +
+                '}';
     }
-    
-    
 }

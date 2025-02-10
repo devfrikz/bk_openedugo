@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.openedugo.openedugo.entity;
 
 import jakarta.persistence.Column;
@@ -16,84 +12,65 @@ import jakarta.persistence.Table;
 import java.sql.Date;
 import java.util.Objects;
 
-
 /**
+ * Entidad que representa la asistencia de un estudiante.
  *
- * @author websuke
+ * ERROR CORREGIDO:
+ * Se eliminó el mapeo duplicado de las columnas "horario_id" y "estudiante_id".
+ *
+ * En la versión original se tenía:
+ *   - Un campo primitivo (horarioId y estudianteId) mapeando "horario_id" y "estudiante_id"
+ *   - Una relación ManyToOne que mapea las mismas columnas.
+ *
+ * Ahora se utilizan únicamente las relaciones:
+ *   - La relación "horario" mapea la columna "horario_id".
+ *   - La relación "estudiante" mapea la columna "estudiante_id".
  */
-
 @Entity
-@Table (name = "asistencia")
+@Table(name = "asistencia")
 public class AsistenciaEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     @Column(name = "asistencia_id")
     private Integer asistenciaId;
-    
-    @Column(name = "horario_id",nullable = false)
-    private Integer horarioId;
-    
-    @Column(name = "estudiante_id",nullable = false)
-    private Integer estudianteId;
-    
+
+    // Se eliminan los campos redundantes: horarioId y estudianteId.
     @Column(name = "fecha")
     private Date fecha;
-    
+
     @Column(name = "presente")
     private Boolean presente;
-    
-    // Declaracion de llave foraneas
+
+    // Relaciones foráneas (las columnas se mapearán únicamente a través de estos atributos)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "horario_id", nullable = false)
+    private HorarioEntity horario;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "horario_id")
-    private HorarioEntity horario;   
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "estudiante_id")
+    @JoinColumn(name = "estudiante_id", nullable = false)
     private EstudianteEntity estudiante;
-    
-    //Constructor Vacio
-    
+
+    // Constructor vacío
     public AsistenciaEntity() {
     }
 
-    //Constructor Con Parametros
-    
-    public AsistenciaEntity(Integer asistenciaId, Integer horarioId, Integer estudianteId, Date fecha, Boolean presente, HorarioEntity horario, EstudianteEntity estudiante) {
+    // Constructor con parámetros (se eliminaron los parámetros redundantes de tipo Integer)
+    public AsistenciaEntity(Integer asistenciaId, Date fecha, Boolean presente, HorarioEntity horario, EstudianteEntity estudiante) {
         this.asistenciaId = asistenciaId;
-        this.horarioId = horarioId;
-        this.estudianteId = estudianteId;
         this.fecha = fecha;
         this.presente = presente;
         this.horario = horario;
         this.estudiante = estudiante;
     }
 
-    // Declaracion de getter y setter
-    
+    // Getters y Setters
     public Integer getAsistenciaId() {
         return asistenciaId;
     }
 
     public void setAsistenciaId(Integer asistenciaId) {
         this.asistenciaId = asistenciaId;
-    }
-
-    public Integer getHorarioId() {
-        return horarioId;
-    }
-
-    public void setHorarioId(Integer horarioId) {
-        this.horarioId = horarioId;
-    }
-
-    public Integer getEstudianteId() {
-        return estudianteId;
-    }
-
-    public void setEstudianteId(Integer estudianteId) {
-        this.estudianteId = estudianteId;
     }
 
     public Date getFecha() {
@@ -111,22 +88,38 @@ public class AsistenciaEntity {
     public void setPresente(Boolean presente) {
         this.presente = presente;
     }
-    
-    //Metodo ToString
+
+    public HorarioEntity getHorario() {
+        return horario;
+    }
+
+    public void setHorario(HorarioEntity horario) {
+        this.horario = horario;
+    }
+
+    public EstudianteEntity getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(EstudianteEntity estudiante) {
+        this.estudiante = estudiante;
+    }
 
     @Override
     public String toString() {
-        return "AsistenciaEntity{" + "asistenciaId=" + asistenciaId + ", horarioId=" + horarioId + ", estudianteId=" + estudianteId + ", fecha=" + fecha + ", presente=" + presente + ", horario=" + horario + ", estudiante=" + estudiante + '}';
+        return "AsistenciaEntity{"
+                + "asistenciaId=" + asistenciaId
+                + ", fecha=" + fecha
+                + ", presente=" + presente
+                + ", horario=" + horario
+                + ", estudiante=" + estudiante
+                + '}';
     }
-    
-    //Metodos Equals y hashcode
 
     @Override
     public int hashCode() {
         int hash = 3;
         hash = 23 * hash + Objects.hashCode(this.asistenciaId);
-        hash = 23 * hash + Objects.hashCode(this.horarioId);
-        hash = 23 * hash + Objects.hashCode(this.estudianteId);
         hash = 23 * hash + Objects.hashCode(this.fecha);
         hash = 23 * hash + Objects.hashCode(this.presente);
         hash = 23 * hash + Objects.hashCode(this.horario);
@@ -149,12 +142,6 @@ public class AsistenciaEntity {
         if (!Objects.equals(this.asistenciaId, other.asistenciaId)) {
             return false;
         }
-        if (!Objects.equals(this.horarioId, other.horarioId)) {
-            return false;
-        }
-        if (!Objects.equals(this.estudianteId, other.estudianteId)) {
-            return false;
-        }
         if (!Objects.equals(this.fecha, other.fecha)) {
             return false;
         }
@@ -166,6 +153,4 @@ public class AsistenciaEntity {
         }
         return Objects.equals(this.estudiante, other.estudiante);
     }
-    
-    
 }
