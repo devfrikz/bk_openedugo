@@ -23,4 +23,6 @@ public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Integer>
 
     // Busca usuarios cuyo apellido contenga el texto indicado (sin distinguir mayúsculas/minúsculas).
     List<UsuarioEntity> findByApellidoContainingIgnoreCase(String apellido);
+
 }
+

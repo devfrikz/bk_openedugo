@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.openedugo.openedugo.entity;
 
 import jakarta.persistence.Column;
@@ -14,51 +10,39 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-/**
- *
- * @author devfrikz
- */
-
-
 @Entity
 @Table(name = "usuarios")
 public class UsuarioEntity {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usuario_id")
     private Integer usuarioId;
-    
-    @Column(name = "username",nullable = false, unique = true,length = 50)
+
+    @Column(name = "username", nullable = false, unique = true, length = 50)
     private String username;
-    
-    @Column(name= "password", nullable = false, length = 255)
+
+    @Column(name = "password", nullable = false, length = 255)
     private String password;
-    
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "role_id",nullable = false)
-    //private Rol role;
-    
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "sucursal_id")
-    //private Sucursal sucursal;
-    
-    @Column(name="nombre", length = 100)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id", nullable = false)
+    private RoleEntity role;
+
+    @ManyToOne
+    @JoinColumn(name = "sucursal_id")
+    private SucursalEntity sucursal;
+
+    @Column(name = "nombre", length = 100)
     private String nombre;
-    
-    @Column(name="apellido",length = 100)
+
+    @Column(name = "apellido", length = 100)
     private String apellido;
-    
-    @Column(name ="email",length = 100)
+
+    @Column(name = "email", length = 100)
     private String email;
 
-    
-
-    // Getter y Setters
-
-    
-    
-
+    // Getters y Setters
 
     public Integer getUsuarioId() {
         return usuarioId;
@@ -67,7 +51,7 @@ public class UsuarioEntity {
     public void setUsuarioId(Integer usuarioId) {
         this.usuarioId = usuarioId;
     }
-    
+
     public String getUsername() {
         return username;
     }
@@ -84,21 +68,20 @@ public class UsuarioEntity {
         this.password = password;
     }
 
-    /*public Rol getRole() {
+    public RoleEntity getRole() {
         return role;
     }
 
-    public void setRole(Rol role) {
+    public void setRole(RoleEntity role) {
         this.role = role;
     }
 
-    public Sucursal getSucursal() {
+    public SucursalEntity getSucursal() {
         return sucursal;
     }
-
-    public void setSucursal(Sucursal sucursal) {
+    public void setSucursal(SucursalEntity sucursal) {
         this.sucursal = sucursal;
-    }*/
+    }
 
     public String getNombre() {
         return nombre;
@@ -123,7 +106,4 @@ public class UsuarioEntity {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
-    
 }
